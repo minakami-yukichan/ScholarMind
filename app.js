@@ -195,6 +195,114 @@ const capabilityCannot = [
   "保证建议一定适用于你的学科"
 ];
 
+const activityLog = [
+  {
+    id: "a-1",
+    date: "今天",
+    time: "16:42",
+    docId: "doc-1",
+    docTitle: "数字平台劳动中的算法透明度叙事",
+    action: "accepted",
+    label: "接受了建议",
+    detail: "将「保持判断权」改为「保留最终学术判断权」"
+  },
+  {
+    id: "a-2",
+    date: "今天",
+    time: "14:30",
+    docId: "doc-1",
+    docTitle: "数字平台劳动中的算法透明度叙事",
+    action: "rejected",
+    label: "拒绝了建议",
+    detail: "最后一句可拆成两句，以提升结论段的阅读节奏"
+  },
+  {
+    id: "a-3",
+    date: "昨天",
+    time: "21:18",
+    docId: "doc-2",
+    docTitle: "医学综述的方法段重写",
+    action: "manual",
+    label: "手动编辑",
+    detail: "新增了样本边界说明"
+  },
+  {
+    id: "a-4",
+    date: "昨天",
+    time: "19:08",
+    docId: "doc-1",
+    docTitle: "数字平台劳动中的算法透明度叙事",
+    action: "accepted",
+    label: "接受了建议",
+    detail: "将研究问题前置到第二句，可更快建立段落主旨"
+  },
+  {
+    id: "a-5",
+    date: "4 月 9 日",
+    time: "18:36",
+    docId: "doc-3",
+    docTitle: "商学院案例研究结论",
+    action: "rejected",
+    label: "拒绝了建议",
+    detail: "拒绝了 2 条存疑建议"
+  }
+];
+
+const baseCitations = [
+  {
+    id: "cit-1",
+    paragraphId: "p-1",
+    raw: "算法透明性讨论多聚焦于工具效率与流程管理",
+    author: "Zhang & Liu",
+    year: "2021",
+    title: "Algorithmic Transparency in Platform Labor",
+    confidence: "high",
+    status: "found",
+    links: [
+      { label: "Google Scholar", url: "#" },
+      { label: "DOI 10.1145/3442188", url: "#" }
+    ]
+  },
+  {
+    id: "cit-2",
+    paragraphId: "p-2",
+    raw: "制度期望如何转换为具体的写作策略",
+    author: "Wang et al.",
+    year: "2019",
+    title: "Institutional Writing Expectations in Academia",
+    confidence: "questionable",
+    status: "found",
+    links: [
+      { label: "Google Scholar", url: "#" }
+    ]
+  },
+  {
+    id: "cit-3",
+    paragraphId: "p-5",
+    raw: "半结构访谈与版本记录对照的方式",
+    author: "未识别",
+    year: "—",
+    title: "—",
+    confidence: "questionable",
+    status: "searching",
+    links: []
+  },
+  {
+    id: "cit-4",
+    paragraphId: "p-3",
+    raw: "作者对系统建议来源、边界与可信度的可感知程度",
+    author: "Chen & Park",
+    year: "2023",
+    title: "Perceived AI Transparency in Writing Assistants",
+    confidence: "high",
+    status: "found",
+    links: [
+      { label: "Google Scholar", url: "#" },
+      { label: "PDF", url: "#" }
+    ]
+  }
+];
+
 const baseDocuments = [
   {
     id: "doc-1",
@@ -454,6 +562,10 @@ const state = {
   selectedStructureNodeId: "p-2",
   suggestions: clone(baseSuggestions),
   sidebarSelection: "home",
+  docFilter: "all",
+  historyFilter: "all",
+  editorLeftTab: "navigation",
+  selectedCitationId: "cit-1",
   leftCollapsed: false,
   rightCollapsed: false,
   overlay: null,
@@ -945,84 +1057,323 @@ function renderSidebar() {
   `;
 }
 
+function renderDashboardHome() {
+  return `
+    <div class="dashboard-stack">
+      <div class="boundary-banner">
+        <div class="boundary-banner__label">
+          ${icon("warning")}AI 仅建议结构与表达 · 不具备学科专业判断能力
+        </div>
+        <button class="inline-link" data-action="open-limitations" type="button">了解详情</button>
+      </div>
+
+      <section class="hero-card">
+        <div>
+          <span class="eyebrow">Quick start</span>
+          <h1 class="page-title">开始一篇新的学术写作会话</h1>
+          <p>你可以从空白文稿开始，也可以先粘贴一段文字，让 ScholarMind 先生成结构与表达层面的初步建议。</p>
+        </div>
+        <button class="button button--primary" data-action="create-doc" type="button">${icon("plus")}新建文档</button>
+      </section>
+
+      <div class="quick-grid">
+        <section class="quick-card quick-card--cta">
+          <div class="quick-card__body">
+            <span class="eyebrow">Blank draft</span>
+            <h2 class="section-title">新建文档</h2>
+            <p>进入三栏编辑器，从章节导航、建议面板和版本历史开始完整写作流程。</p>
+          </div>
+          <button class="button button--secondary" data-action="create-doc" type="button">${icon("plus")}创建空白草稿</button>
+        </section>
+
+        <section class="quick-card">
+          <div class="quick-card__body">
+            <span class="eyebrow">Paste text</span>
+            <h2 class="section-title">粘贴文本快捷入口</h2>
+            <p>把你已经写好的引言、摘要或方法段先放进来，直接进入建议面板。</p>
+          </div>
+          <label class="field field--textarea paste-box">
+            <textarea data-model="quick-paste" placeholder="粘贴一段你的学术写作内容，原型会带着这段文本进入编辑器。">${escapeHtml(state.quickPaste)}</textarea>
+          </label>
+          <button class="button button--primary" data-action="create-doc" type="button">${icon("paste")}导入并分析</button>
+        </section>
+      </div>
+
+      <section class="recent-docs">
+        <div class="recent-docs__header">
+          <div>
+            <span class="eyebrow">Recent documents</span>
+            <h2 class="section-title">最近文档</h2>
+          </div>
+          <span class="pill">${state.documents.length} 份文稿</span>
+        </div>
+
+        <div class="doc-list">
+          ${state.documents
+            .filter((doc) => doc.id !== "doc-new")
+            .map(
+              (doc) => `
+                <button class="doc-row" data-action="open-doc" data-doc-id="${doc.id}" type="button">
+                  <div class="doc-row__main">
+                    <div class="doc-row__title">
+                      <strong>${doc.title}</strong>
+                      <span class="tag">${doc.discipline}</span>
+                    </div>
+                    <div class="doc-row__meta">
+                      <span>最后修改：${doc.modified}</span>
+                      <span>${doc.summary}</span>
+                    </div>
+                  </div>
+                  <span class="doc-row__count">${doc.suggestions}</span>
+                </button>
+              `
+            )
+            .join("")}
+        </div>
+      </section>
+    </div>
+  `;
+}
+
+function renderDocumentsPage() {
+  const allDisciplines = ["社会科学", "医学", "商科"];
+  const filters = [{ value: "all", label: "全部" }, ...allDisciplines.map((d) => ({ value: d, label: d }))];
+  const filtered = state.documents
+    .filter((doc) => doc.id !== "doc-new")
+    .filter((doc) => state.docFilter === "all" || doc.discipline === state.docFilter);
+
+  return `
+    <div class="dashboard-stack">
+      <div class="page-header-row">
+        <div>
+          <span class="eyebrow">My documents</span>
+          <h1 class="page-title">我的文档</h1>
+        </div>
+        <button class="button button--primary button--compact" data-action="create-doc" type="button">${icon("plus")}新建文档</button>
+      </div>
+
+      <div class="segmented" role="tablist" aria-label="Document filter">
+        ${filters
+          .map(
+            (f) => `
+              <button class="${state.docFilter === f.value ? "is-active" : ""}" data-action="doc-filter" data-value="${f.value}" type="button">${f.label}</button>
+            `
+          )
+          .join("")}
+      </div>
+
+      ${filtered.length
+        ? `
+          <div class="doc-list">
+            ${filtered
+              .map(
+                (doc) => `
+                  <button class="doc-row" data-action="open-doc" data-doc-id="${doc.id}" type="button">
+                    <div class="doc-row__main">
+                      <div class="doc-row__title">
+                        <strong>${doc.title}</strong>
+                        <span class="tag">${doc.discipline}</span>
+                      </div>
+                      <div class="doc-row__meta">
+                        <span>路径：${doc.path.join(" / ")}</span>
+                        <span>最后修改：${doc.modified}</span>
+                        <span>${doc.summary}</span>
+                      </div>
+                    </div>
+                    <span class="doc-row__count">${doc.suggestions}</span>
+                  </button>
+                `
+              )
+              .join("")}
+          </div>
+        `
+        : `
+          <div class="panel-empty">
+            <p>当前筛选条件下没有文档。</p>
+          </div>
+        `}
+    </div>
+  `;
+}
+
+function renderHistoryPage() {
+  const filterOptions = [
+    { value: "all", label: "全部" },
+    { value: "accepted", label: "接受建议" },
+    { value: "rejected", label: "拒绝建议" },
+    { value: "manual", label: "手动编辑" }
+  ];
+
+  const filtered = activityLog.filter(
+    (item) => state.historyFilter === "all" || item.action === state.historyFilter
+  );
+
+  const grouped = filtered.reduce((groups, item) => {
+    if (!groups[item.date]) {
+      groups[item.date] = [];
+    }
+    groups[item.date].push(item);
+    return groups;
+  }, {});
+
+  const actionDotClass = { accepted: "activity-dot--accepted", rejected: "activity-dot--rejected", manual: "activity-dot--manual" };
+  const actionIcon = { accepted: "check", rejected: "close", manual: "pen" };
+
+  return `
+    <div class="dashboard-stack">
+      <div class="page-header-row">
+        <div>
+          <span class="eyebrow">Activity</span>
+          <h1 class="page-title">历史记录</h1>
+        </div>
+      </div>
+
+      <div class="segmented" role="tablist" aria-label="History filter">
+        ${filterOptions
+          .map(
+            (f) => `
+              <button class="${state.historyFilter === f.value ? "is-active" : ""}" data-action="history-filter" data-value="${f.value}" type="button">${f.label}</button>
+            `
+          )
+          .join("")}
+      </div>
+
+      ${Object.keys(grouped).length
+        ? Object.entries(grouped)
+            .map(
+              ([date, items]) => `
+                <div class="activity-group">
+                  <span class="activity-date-label">${date}</span>
+                  <div class="activity-list">
+                    ${items
+                      .map(
+                        (item) => `
+                          <div class="activity-item">
+                            <span class="activity-dot ${actionDotClass[item.action] || ""}">${icon(actionIcon[item.action] || "spark")}</span>
+                            <div class="activity-item__body">
+                              <div class="activity-item__top">
+                                <strong>${item.label}</strong>
+                                <span class="tag">${item.docTitle}</span>
+                              </div>
+                              <p class="activity-item__detail">${item.detail}</p>
+                            </div>
+                            <div class="activity-item__side">
+                              <span class="activity-time">${item.time}</span>
+                              <button class="button button--ghost button--tiny" data-action="open-doc" data-doc-id="${item.docId}" type="button">打开文档</button>
+                            </div>
+                          </div>
+                        `
+                      )
+                      .join("")}
+                  </div>
+                </div>
+              `
+            )
+            .join("")
+        : `
+          <div class="panel-empty">
+            <p>当前筛选条件下没有操作记录。</p>
+          </div>
+        `}
+    </div>
+  `;
+}
+
+function renderSettingsPage() {
+  return `
+    <div class="dashboard-stack">
+      <div class="page-header-row">
+        <div>
+          <span class="eyebrow">Preferences</span>
+          <h1 class="page-title">设置</h1>
+        </div>
+      </div>
+
+      <div class="settings-stack">
+        <div class="card">
+          <div class="settings-section-header">
+            <h2 class="section-title">个人信息</h2>
+          </div>
+          <div class="settings-profile-row">
+            <img src="./img/avatar.png" class="avatar avatar--large" alt="林知遥" />
+            <div class="settings-profile-info">
+              <strong>林知遥</strong>
+              <span>lin@university.edu</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="settings-section-header">
+            <h2 class="section-title">写作偏好</h2>
+            <p>当前配置在 Onboarding 中选定，可随时重新设置。</p>
+          </div>
+          <div class="settings-pref-row">
+            <div class="settings-pref-item">
+              <span class="field__label">学科领域</span>
+              <span class="tag">${state.selectedDiscipline}</span>
+            </div>
+            <div class="settings-pref-item">
+              <span class="field__label">写作阶段</span>
+              <span class="tag">${state.selectedStage}</span>
+            </div>
+          </div>
+          <button class="button button--secondary button--compact" data-action="open-onboarding" type="button">${icon("refresh")}重新设置写作偏好</button>
+        </div>
+
+        <div class="card">
+          <div class="settings-section-header">
+            <h2 class="section-title">AI 行为设置</h2>
+            <p>以下为当前生效的建议策略，仅供查看。</p>
+          </div>
+          <div class="settings-ai-rows">
+            <div class="settings-ai-row">
+              <span>建议密度</span>
+              <div class="segmented segmented--small">
+                <button type="button">高</button>
+                <button class="is-active" type="button">中</button>
+                <button type="button">低</button>
+              </div>
+            </div>
+            <div class="settings-ai-row">
+              <span>显示存疑建议</span>
+              <span class="settings-toggle settings-toggle--on">${icon("check")}开启</span>
+            </div>
+            <div class="settings-ai-row">
+              <span>自动保存间隔</span>
+              <span class="tag">每 30 秒</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="settings-section-header">
+            <h2 class="section-title">账户</h2>
+          </div>
+          <button class="button button--danger button--compact" data-action="logout" type="button">${icon("logout")}退出登录</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderHomePage() {
+  let mainContent;
+  if (state.sidebarSelection === "documents") {
+    mainContent = renderDocumentsPage();
+  } else if (state.sidebarSelection === "history") {
+    mainContent = renderHistoryPage();
+  } else if (state.sidebarSelection === "settings") {
+    mainContent = renderSettingsPage();
+  } else {
+    mainContent = renderDashboardHome();
+  }
+
   return `
     <section class="page workspace-layout">
       ${renderSidebar()}
       <main class="dashboard-main">
-        <div class="dashboard-stack">
-          <div class="boundary-banner">
-            <div class="boundary-banner__label">
-              ${icon("warning")}AI 仅建议结构与表达 · 不具备学科专业判断能力
-            </div>
-            <button class="inline-link" data-action="open-limitations" type="button">了解详情</button>
-          </div>
-
-          <section class="hero-card">
-            <div>
-              <span class="eyebrow">Quick start</span>
-              <h1 class="page-title">开始一篇新的学术写作会话</h1>
-              <p>你可以从空白文稿开始，也可以先粘贴一段文字，让 ScholarMind 先生成结构与表达层面的初步建议。</p>
-            </div>
-            <button class="button button--primary" data-action="create-doc" type="button">${icon("plus")}新建文档</button>
-          </section>
-
-          <div class="quick-grid">
-            <section class="quick-card quick-card--cta">
-              <div class="quick-card__body">
-                <span class="eyebrow">Blank draft</span>
-                <h2 class="section-title">新建文档</h2>
-                <p>进入三栏编辑器，从章节导航、建议面板和版本历史开始完整写作流程。</p>
-              </div>
-              <button class="button button--secondary" data-action="create-doc" type="button">${icon("plus")}创建空白草稿</button>
-            </section>
-
-            <section class="quick-card">
-              <div class="quick-card__body">
-                <span class="eyebrow">Paste text</span>
-                <h2 class="section-title">粘贴文本快捷入口</h2>
-                <p>把你已经写好的引言、摘要或方法段先放进来，直接进入建议面板。</p>
-              </div>
-              <label class="field field--textarea paste-box">
-                <textarea data-model="quick-paste" placeholder="粘贴一段你的学术写作内容，原型会带着这段文本进入编辑器。">${escapeHtml(state.quickPaste)}</textarea>
-              </label>
-              <button class="button button--primary" data-action="create-doc" type="button">${icon("paste")}导入并分析</button>
-            </section>
-          </div>
-
-          <section class="recent-docs">
-            <div class="recent-docs__header">
-              <div>
-                <span class="eyebrow">Recent documents</span>
-                <h2 class="section-title">最近文档</h2>
-              </div>
-              <span class="pill">${state.documents.length} 份文稿</span>
-            </div>
-
-            <div class="doc-list">
-              ${state.documents
-                .filter((doc) => doc.id !== "doc-new")
-                .map(
-                  (doc) => `
-                    <button class="doc-row" data-action="open-doc" data-doc-id="${doc.id}" type="button">
-                      <div class="doc-row__main">
-                        <div class="doc-row__title">
-                          <strong>${doc.title}</strong>
-                          <span class="tag">${doc.discipline}</span>
-                        </div>
-                        <div class="doc-row__meta">
-                          <span>最后修改：${doc.modified}</span>
-                          <span>${doc.summary}</span>
-                        </div>
-                      </div>
-                      <span class="doc-row__count">${doc.suggestions}</span>
-                    </button>
-                  `
-                )
-                .join("")}
-            </div>
-          </section>
-        </div>
+        ${mainContent}
       </main>
     </section>
   `;
@@ -1212,6 +1563,47 @@ function renderUserMenu() {
   `;
 }
 
+function renderCitationsPane() {
+  const confidenceClass = (c) => c === "questionable" ? "pill--warning" : "pill--blue";
+  const confidenceLabel = (c) => c === "questionable" ? "存疑" : "高可信";
+
+  return `
+    <div class="editor-pane__body">
+      <div class="citations-header">
+        <span class="eyebrow">Citations</span>
+        <span class="pill">已识别 ${baseCitations.length} 处</span>
+      </div>
+      <p class="citations-hint">AI 已扫描全文，以下引用待核实，请点击链接确认来源。</p>
+      <div class="citation-list">
+        ${baseCitations
+          .map(
+            (cit) => `
+              <button class="citation-card ${state.selectedCitationId === cit.id ? "is-selected" : ""}" data-action="select-citation" data-citation-id="${cit.id}" type="button">
+                <div class="citation-card__meta">
+                  <span class="pill ${confidenceClass(cit.confidence)}">${confidenceLabel(cit.confidence)}</span>
+                  ${cit.status === "searching"
+                    ? `<span class="citation-searching">${icon("refresh")}AI 正在搜索…</span>`
+                    : `<span class="citation-card__author">${cit.author} · ${cit.year}</span>`}
+                </div>
+                <p class="citation-card__raw">「${cit.raw}」</p>
+                ${cit.title !== "—" ? `<p class="citation-card__title">${cit.title}</p>` : ""}
+                ${cit.links.length
+                  ? `
+                    <div class="citation-links">
+                      ${cit.links.map((link) => `<a class="citation-link" href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`).join("")}
+                    </div>
+                  `
+                  : ""}
+              </button>
+            `
+          )
+          .join("")}
+      </div>
+      <button class="button button--secondary button--block" data-action="rescan-citations" type="button">${icon("spark")}重新扫描全文引用</button>
+    </div>
+  `;
+}
+
 function renderEditorPage() {
   const doc = currentDoc();
   const currentSection = findSectionByParagraph(state.selectedParagraphId) || editorSections[0];
@@ -1291,31 +1683,38 @@ function renderEditorPage() {
             `
             : `
               <div class="editor-pane__header">
-                <h3>章节导航</h3>
+                <div class="editor-left-tabs">
+                  <button class="${state.editorLeftTab === "navigation" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="navigation" type="button">章节导航</button>
+                  <button class="${state.editorLeftTab === "citations" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="citations" type="button">引用管理</button>
+                </div>
                 <button class="button button--ghost button--tiny" data-action="toggle-left" type="button">${icon("chevronLeft")}收起</button>
               </div>
-              <div class="editor-pane__body">
-                <div class="section-list">
-                  ${editorSections
-                    .map(
-                      (section) => `
-                        <button class="section-button ${currentSection.id === section.id ? "is-active" : ""}" data-action="select-section" data-section-id="${section.id}" type="button">
-                          <strong>${section.anchor}</strong>
-                          <span>${section.paragraphs.length} 个段落</span>
-                        </button>
-                      `
-                    )
-                    .join("")}
-                </div>
-                <div>
-                  <div class="split-row">
-                    <h3>当前章节逻辑树</h3>
-                    <span class="pill pill--warning">弱问题段落</span>
+              ${state.editorLeftTab === "citations"
+                ? renderCitationsPane()
+                : `
+                  <div class="editor-pane__body">
+                    <div class="section-list">
+                      ${editorSections
+                        .map(
+                          (section) => `
+                            <button class="section-button ${currentSection.id === section.id ? "is-active" : ""}" data-action="select-section" data-section-id="${section.id}" type="button">
+                              <strong>${section.anchor}</strong>
+                              <span>${section.paragraphs.length} 个段落</span>
+                            </button>
+                          `
+                        )
+                        .join("")}
+                    </div>
+                    <div>
+                      <div class="split-row">
+                        <h3>当前章节逻辑树</h3>
+                        <span class="pill pill--warning">弱问题段落</span>
+                      </div>
+                      ${renderMiniLogicTree()}
+                    </div>
+                    <button class="button button--secondary button--block" data-action="open-structure" type="button">${icon("branch")}查看结构图</button>
                   </div>
-                  ${renderMiniLogicTree()}
-                </div>
-                <button class="button button--secondary button--block" data-action="open-structure" type="button">${icon("branch")}查看结构图</button>
-              </div>
+                `}
             `}
         </aside>
 
@@ -1693,9 +2092,6 @@ function handleClick(event) {
       return;
     case "sidebar-nav":
       state.sidebarSelection = actionElement.dataset.value;
-      if (state.sidebarSelection === "settings") {
-        showToast("设置页在本轮原型中折叠为能力边界说明入口。", "warning");
-      }
       render();
       return;
     case "create-doc":
@@ -1861,6 +2257,29 @@ function handleClick(event) {
       return;
     case "go-home":
       setRoute("home");
+      return;
+    case "doc-filter":
+      state.docFilter = actionElement.dataset.value;
+      render();
+      return;
+    case "history-filter":
+      state.historyFilter = actionElement.dataset.value;
+      render();
+      return;
+    case "editor-left-tab":
+      state.editorLeftTab = actionElement.dataset.tab;
+      render();
+      return;
+    case "select-citation":
+      state.selectedCitationId = actionElement.dataset.citationId;
+      render();
+      return;
+    case "rescan-citations":
+      showToast("AI 正在重新扫描全文引用，请稍候。", "success");
+      return;
+    case "open-onboarding":
+      state.onboardingStep = 1;
+      setRoute("onboarding");
       return;
     case "logout":
       state.overlay = null;
