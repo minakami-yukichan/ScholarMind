@@ -914,7 +914,7 @@ function renderSidebar() {
 
       <div class="sidebar__user">
         <div class="sidebar__user-meta">
-          <span class="avatar avatar--large">林</span>
+          <img src="./img/avatar.png" class="avatar avatar--large" alt="林知遥" />
           <div>
             <strong>林知遥</strong>
             <span>${state.selectedDiscipline} / ${state.selectedStage}</span>
@@ -1245,6 +1245,7 @@ function renderEditorPage() {
         </div>
 
         <div class="editor-actions">
+          <button class="button button--ghost button--compact" data-action="go-home" type="button">${icon("home")}主页</button>
           <button class="button button--secondary button--compact" data-action="open-versions" type="button">${icon("compare")}版本历史</button>
           <button class="button button--secondary button--compact" data-action="export-doc" type="button">${icon("export")}导出</button>
           ${renderUserMenu()}
@@ -1857,6 +1858,9 @@ function handleClick(event) {
     case "toggle-user-menu":
       state.userMenuOpen = !state.userMenuOpen;
       render();
+      return;
+    case "go-home":
+      setRoute("home");
       return;
     case "logout":
       state.overlay = null;

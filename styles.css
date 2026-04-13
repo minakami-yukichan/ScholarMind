@@ -376,6 +376,7 @@ textarea {
 .field__label {
   font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
   color: var(--text-faint);
 }
 
@@ -864,6 +865,12 @@ textarea {
   height: 44px;
 }
 
+img.avatar {
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
 .sidebar__user strong,
 .sidebar__user span {
   display: block;
@@ -997,6 +1004,18 @@ textarea {
 
 .quick-card--cta p {
   color: rgba(255, 244, 255, 0.72);
+}
+
+.quick-card--cta .quick-card__body p {
+  color: rgba(255, 244, 255, 0.72);
+}
+
+.quick-card--cta .eyebrow {
+  color: rgba(255, 244, 255, 0.5);
+}
+
+.quick-card--cta .button {
+  align-self: end;
 }
 
 .quick-card__body {
