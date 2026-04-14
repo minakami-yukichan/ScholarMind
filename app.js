@@ -146,105 +146,105 @@ const ICONS = {
 const featureHighlights = [
   {
     icon: "branch",
-    title: "结构建议有据可循",
-    copy: "围绕段落、章节与论证链条给出可解释的修改提示。"
+    title: "Structural suggestions are evidence-based",
+    copy: "Provides explainable modification hints around paragraphs, sections, and argument chains."
   },
   {
     icon: "warning",
-    title: "把不确定性明确标出",
-    copy: "低可信建议单独标注，不把猜测伪装成结论。"
+    title: "Clearly flag uncertainties",
+    copy: "Low-confidence suggestions are separately flagged, not masquerading guesses as conclusions."
   },
   {
     icon: "compare",
-    title: "版本对比可以回溯",
-    copy: "每次接受、拒绝与手动编辑都进入版本历史，便于复盘。"
+    title: "Version comparison is traceable",
+    copy: "Every accept, reject, and manual edit enters version history for review."
   }
 ];
 
 const disciplines = [
-  "理工科",
-  "社会科学",
-  "人文",
-  "医学",
-  "商科",
-  "其他"
+  "STEM",
+  "Social Sciences",
+  "Humanities",
+  "Medicine",
+  "Business",
+  "Other"
 ];
 
 const stages = [
-  "初稿整理",
-  "结构优化",
-  "语言润色",
-  "最终校对"
+  "Drafting",
+  "Structure",
+  "Polishing",
+  "Final Review"
 ];
 
 const capabilityCan = [
-  "建议段落结构",
-  "提示逻辑断层",
-  "改善表达流畅度",
-  "标注措辞存疑处",
-  "汇总待处理建议",
-  "追踪版本变化"
+  "Suggest paragraph structures",
+  "Identify logic gaps",
+  "Improve readability",
+  "Flag questionable phrasing",
+  "Summarize pending suggestions",
+  "Track version changes"
 ];
 
 const capabilityCannot = [
-  "判断学科专业知识正误",
-  "核实引用来源",
-  "做出最终修改决策",
-  "理解特定领域术语偏好",
-  "替你承担署名责任",
-  "保证建议一定适用于你的学科"
+  "Verify domain-specific knowledge",
+  "Validate citation sources",
+  "Make final editing decisions",
+  "Understand field-specific terminology preferences",
+  "Take authorship responsibility",
+  "Guarantee suggestions fit your discipline"
 ];
 
 const activityLog = [
   {
     id: "a-1",
-    date: "今天",
+    date: "Today",
     time: "16:42",
     docId: "doc-1",
-    docTitle: "数字平台劳动中的算法透明度叙事",
+    docTitle: "Algorithmic Transparency in Platform Labor",
     action: "accepted",
-    label: "接受了建议",
-    detail: "将「保持判断权」改为「保留最终学术判断权」"
+    label: "Suggestion accepted",
+    detail: "Changed 'retain judgment' to 'retain final academic judgment'"
   },
   {
     id: "a-2",
-    date: "今天",
+    date: "Today",
     time: "14:30",
     docId: "doc-1",
-    docTitle: "数字平台劳动中的算法透明度叙事",
+    docTitle: "Algorithmic Transparency in Platform Labor",
     action: "rejected",
-    label: "拒绝了建议",
-    detail: "最后一句可拆成两句，以提升结论段的阅读节奏"
+    label: "Suggestion rejected",
+    detail: "Last sentence can be split for better reading flow"
   },
   {
     id: "a-3",
-    date: "昨天",
+    date: "Yesterday",
     time: "21:18",
     docId: "doc-2",
-    docTitle: "医学综述的方法段重写",
+    docTitle: "Medical Review Methods Section",
     action: "manual",
-    label: "手动编辑",
-    detail: "新增了样本边界说明"
+    label: "Manual edit",
+    detail: "Added sample boundary explanation"
   },
   {
     id: "a-4",
-    date: "昨天",
+    date: "Yesterday",
     time: "19:08",
     docId: "doc-1",
-    docTitle: "数字平台劳动中的算法透明度叙事",
+    docTitle: "Algorithmic Transparency in Platform Labor",
     action: "accepted",
-    label: "接受了建议",
-    detail: "将研究问题前置到第二句，可更快建立段落主旨"
+    label: "Suggestion accepted",
+    detail: "Moved research question to second sentence"
   },
   {
     id: "a-5",
-    date: "4 月 9 日",
+    date: "Apr 9",
     time: "18:36",
     docId: "doc-3",
-    docTitle: "商学院案例研究结论",
+    docTitle: "Business School Case Study Conclusions",
     action: "rejected",
-    label: "拒绝了建议",
-    detail: "拒绝了 2 条存疑建议"
+    label: "Suggestion rejected",
+    detail: "Rejected 2 questionable suggestions"
   }
 ];
 
@@ -252,7 +252,7 @@ const baseCitations = [
   {
     id: "cit-1",
     paragraphId: "p-1",
-    raw: "算法透明性讨论多聚焦于工具效率与流程管理",
+    raw: "Algorithmic transparency discussions focus on tool efficiency and process management",
     author: "Zhang & Liu",
     year: "2021",
     title: "Algorithmic Transparency in Platform Labor",
@@ -266,7 +266,7 @@ const baseCitations = [
   {
     id: "cit-2",
     paragraphId: "p-2",
-    raw: "制度期望如何转换为具体的写作策略",
+    raw: "How institutional expectations translate into specific writing strategies",
     author: "Wang et al.",
     year: "2019",
     title: "Institutional Writing Expectations in Academia",
@@ -279,8 +279,8 @@ const baseCitations = [
   {
     id: "cit-3",
     paragraphId: "p-5",
-    raw: "半结构访谈与版本记录对照的方式",
-    author: "未识别",
+    raw: "Semi-structured interviews paired with version record comparison",
+    author: "Unidentified",
     year: "—",
     title: "—",
     confidence: "questionable",
@@ -290,7 +290,7 @@ const baseCitations = [
   {
     id: "cit-4",
     paragraphId: "p-3",
-    raw: "作者对系统建议来源、边界与可信度的可感知程度",
+    raw: "Authors perceived awareness of AI suggestion sources, boundaries, and reliability",
     author: "Chen & Park",
     year: "2023",
     title: "Perceived AI Transparency in Writing Assistants",
@@ -306,82 +306,82 @@ const baseCitations = [
 const baseDocuments = [
   {
     id: "doc-1",
-    title: "数字平台劳动中的算法透明度叙事",
-    discipline: "社会科学",
-    modified: "今天 16:42",
+    title: "Algorithmic Transparency in Platform Labor",
+    discipline: "Social Sciences",
+    modified: "Today 16:42",
     suggestions: 6,
-    path: ["我的文档", "论文项目", "引言修订"],
-    summary: "接受了 3 条建议 / 手动编辑了 2 处"
+    path: ["My Documents", "Thesis", "Intro Revision"],
+    summary: "3 accepted / 2 manual edits"
   },
   {
     id: "doc-2",
-    title: "医学综述的方法段重写",
-    discipline: "医学",
-    modified: "昨天 21:18",
+    title: "Medical Review Methods Section",
+    discipline: "Medicine",
+    modified: "Yesterday 21:18",
     suggestions: 2,
-    path: ["我的文档", "综述", "方法部分"],
-    summary: "新增了样本边界说明"
+    path: ["My Documents", "Reviews", "Methods"],
+    summary: "Added sample boundary explanation"
   },
   {
     id: "doc-3",
-    title: "商学院案例研究结论",
-    discipline: "商科",
-    modified: "4 月 9 日 18:36",
+    title: "Business School Case Study Conclusions",
+    discipline: "Business",
+    modified: "Apr 9 18:36",
     suggestions: 4,
-    path: ["我的文档", "案例研究", "结论段"],
-    summary: "拒绝了 2 条存疑建议"
+    path: ["My Documents", "Case Studies", "Conclusions"],
+    summary: "Rejected 2 questionable suggestions"
   }
 ];
 
 const editorSections = [
   {
     id: "sec-1",
-    name: "研究背景",
-    anchor: "1. 研究背景",
+    name: "Background",
+    anchor: "1. Background",
     paragraphs: [
       {
         id: "p-1",
-        label: "背景铺陈",
-        text: "近年来，关于平台劳动中的算法透明性讨论多聚焦于工具效率与流程管理，但学术写作者如何解释这种透明性，仍缺少细致分析。"
+        label: "Context Setting",
+        text: "Recent discussions on algorithmic transparency in platform labor have focused on tool efficiency and process management, but how academic writers interpret this transparency remains underexplored."
       },
       {
         id: "p-2",
-        label: "研究空白",
-        text: "现有研究往往直接将平台规则与写作行为并置，却没有解释制度期望如何转换为具体的写作策略，这使得引言在理论上出现了一步跳跃。"
+        label: "Research Gap",
+        text: "Existing studies often juxtapose platform rules with writing behavior without explaining how institutional expectations translate into specific writing strategies, creating a theoretical leap in the introduction."
       }
     ]
   },
   {
     id: "sec-2",
-    name: "理论框架",
-    anchor: "2. 理论框架",
+    name: "Theoretical Framework",
+    anchor: "2. Theoretical Framework",
     paragraphs: [
       {
         id: "p-3",
-        label: "概念界定",
-        text: "本文将算法透明性理解为作者对系统建议来源、边界与可信度的可感知程度，而不仅是模型性能的可展示结果。"
+        label: "Concept Definition",
+        text: "This paper Understands algorithmic transparency as the author's perceived awareness of AI suggestion sources, boundaries, and reliability, not just the demonstrable model performance."
       },
       {
         id: "p-4",
-        label: "分析维度",
-        text: "在此基础上，文章从结构建议、表达润色与逻辑提示三个维度讨论 AI 协作对学术写作的影响，并说明作者如何在过程中保持判断权。"
+        label: "Analysis Dimensions",
+        text: "Based on this, the article discusses AI collaboration's impact on academic writing from three dimensions: structural suggestions, expression refinement, and logic cues, while explaining how authors maintain judgment throughout the process."
       }
     ]
   },
   {
     id: "sec-3",
-    name: "方法与讨论",
-    anchor: "3. 方法与讨论",
+    name: "Methods & Discussion",
+    anchor: "3. Methods & Discussion",
     paragraphs: [
       {
         id: "p-5",
-        label: "样本说明",
-        text: "研究采用半结构访谈与版本记录对照的方式观察作者如何接收、拒绝或重写 AI 建议，但当前段落仍欠缺对样本边界的明确交代。"
+        label: "Sample Description",
+        text: "The study uses semi-structured interviews and version record comparison to observe how authors receive, reject, or rewrite AI suggestions, but the current paragraph still lacks a clear explanation of sample boundaries."
       },
       {
         id: "p-6",
-        label: "阶段结论",
-        text: "初步结果显示，作者更愿意接受结构调整类建议，而会对涉及学科术语与引用判断的建议保持高度谨慎。"
+        label: "Preliminary Conclusions",
+        text: "Initial results show that authors are more willing to accept structural adjustment suggestions while remaining highly cautious about suggestions involving disciplinary terminology and citation judgments."
       }
     ]
   }
@@ -392,8 +392,8 @@ const baseSuggestions = [
     id: "s-1",
     paragraphId: "p-1",
     confidence: "high",
-    type: "结构",
-    text: "建议在本段末尾补一句研究问题定义，让下一段的“研究空白”更早出现。",
+    type: "Structure",
+    text: "Consider adding a research question definition at the end of this paragraph to introduce the research gap earlier.",
     note: "",
     status: "pending"
   },
@@ -401,17 +401,17 @@ const baseSuggestions = [
     id: "s-2",
     paragraphId: "p-2",
     confidence: "questionable",
-    type: "逻辑",
-    text: "本段从“制度期望”直接跳到“写作策略”，中间缺少转化机制的解释。",
-    note: "该判断基于上下文推断，可能受到学科术语与写作范式差异影响。",
+    type: "Logic",
+    text: "This paragraph jumps from institutional expectations to writing strategies without explaining the transformation mechanism.",
+    note: "This judgment is based on contextual inference and may be affected by disciplinary terminology differences.",
     status: "pending"
   },
   {
     id: "s-3",
     paragraphId: "p-2",
     confidence: "high",
-    type: "结构",
-    text: "将研究问题前置到第二句，可更快建立段落主旨。",
+    type: "Structure",
+    text: "Moving the research question to the second sentence can establish the paragraph's main point more quickly.",
     note: "",
     status: "pending"
   },
@@ -419,8 +419,8 @@ const baseSuggestions = [
     id: "s-4",
     paragraphId: "p-4",
     confidence: "high",
-    type: "措辞",
-    text: "将“保持判断权”改为“保留最终学术判断权”，语义会更明确。",
+    type: "Wording",
+    text: "Change retain judgment to retain final academic judgment for clearer semantics.",
     note: "",
     status: "accepted"
   },
@@ -428,17 +428,17 @@ const baseSuggestions = [
     id: "s-5",
     paragraphId: "p-5",
     confidence: "questionable",
-    type: "结构",
-    text: "AI 判断此处可能缺少研究限制声明，建议说明样本规模或语料边界。",
-    note: "请结合学科规范确认是否应在本节或结论部分补充。",
+    type: "Structure",
+    text: "AI suggests adding a research limitation statement to clarify sample size or corpus boundaries.",
+    note: "Please confirm with disciplinary standards whether this should be added in this section or conclusions.",
     status: "pending"
   },
   {
     id: "s-6",
     paragraphId: "p-6",
     confidence: "high",
-    type: "措辞",
-    text: "最后一句可拆成两句，以提升结论段的阅读节奏。",
+    type: "Wording",
+    text: "The last sentence can be split into two for better reading flow in the conclusion.",
     note: "",
     status: "rejected"
   }
@@ -447,68 +447,68 @@ const baseSuggestions = [
 const logicSections = [
   {
     id: "logic-1",
-    label: "研究背景",
+    label: "Background",
     nodes: [
-      { id: "p-1", label: "背景铺陈段", status: "normal" },
-      { id: "p-2", label: "研究空白段", status: "weak" }
+      { id: "p-1", label: "Context Setting Paragraph", status: "normal" },
+      { id: "p-2", label: "Research Gap Paragraph", status: "weak" }
     ]
   },
   {
     id: "logic-2",
-    label: "理论框架",
+    label: "Theoretical Framework",
     nodes: [
-      { id: "p-3", label: "概念界定段", status: "normal" },
-      { id: "p-4", label: "分析维度段", status: "normal" }
+      { id: "p-3", label: "Concept Definition Paragraph", status: "normal" },
+      { id: "p-4", label: "Analysis Dimensions Paragraph", status: "normal" }
     ]
   },
   {
     id: "logic-3",
-    label: "方法与讨论",
+    label: "Methods & Discussion",
     nodes: [
-      { id: "p-5", label: "样本说明段", status: "weak" },
-      { id: "p-6", label: "阶段结论段", status: "normal" }
+      { id: "p-5", label: "Sample Description Paragraph", status: "weak" },
+      { id: "p-6", label: "Preliminary Conclusion Paragraph", status: "normal" }
     ]
   },
   {
     id: "logic-4",
-    label: "结构缺口",
-    nodes: [{ id: "missing-limitations", label: "研究限制声明", status: "missing" }]
+    label: "Structure Gap",
+    nodes: [{ id: "missing-limitations", label: "Research Limitations Statement", status: "missing" }]
   }
 ];
 
 const logicDetails = {
-  "p-1": "本段承担背景铺陈功能，建议保留问题意识，但可增加一句“为何需要新的协作视角”来抬高研究动机。",
-  "p-2": "AI 判断该段与下一段之间缺少“制度期望如何转为写作策略”的过渡，因此标记为逻辑衔接弱。",
-  "p-3": "概念界定清晰，当前结构稳定，适合作为理论框架的入口段。",
-  "p-4": "本段承担分析维度展开功能，建议继续保持三分法结构，不需要再压缩。",
-  "p-5": "AI 认为样本说明仍不完整，读者会难以判断结论边界，因此建议补一段限制说明或把边界前置。",
-  "p-6": "该段主要承担阶段结论作用，建议维持判断谨慎的语气，避免过强概括。",
-  "missing-limitations": "当前结构中缺少一段用于交代研究限制、样本语料边界或适用范围的说明，因此以红色虚线节点提示。"
+  "p-1": "This paragraph serves context setting. Keep problem awareness, but consider adding why a new collaboration perspective is needed to strengthen research motivation.",
+  "p-2": "AI judges missing transition between this and next paragraph on how institutional expectations transform to writing strategies, marked as weak logic connection.",
+  "p-3": "Concept definition is clear, current structure is stable, suitable as the entry paragraph for the theoretical framework.",
+  "p-4": "This paragraph serves analysis dimension expansion. Keep the three-part structure, no need to compress further.",
+  "p-5": "AI considers the sample description incomplete, readers cannot judge conclusion boundaries, so suggests adding a limitation statement or moving boundaries earlier.",
+  "p-6": "This paragraph serves preliminary conclusion function. Maintain cautious tone, avoid strong generalizations.",
+  "missing-limitations": "Current structure lacks a paragraph explaining research limitations, sample corpus boundaries, or scope, hence indicated with a red dashed node."
 };
 
 const versionHistory = [
   {
     id: "v-1",
     time: "04-10 09:12",
-    summary: "导入原始草稿",
+    summary: "Imported original draft",
     count: 0
   },
   {
     id: "v-2",
     time: "04-10 14:36",
-    summary: "接受了 2 条结构建议",
+    summary: "Accepted 2 structure suggestions",
     count: 2
   },
   {
     id: "v-3",
     time: "04-10 19:08",
-    summary: "手动编辑了 3 处表达",
+    summary: "Manual edited 3 expressions",
     count: 1
   },
   {
     id: "v-4",
     time: "04-11 16:42",
-    summary: "接受了 3 条建议 / 手动编辑了 2 处",
+    summary: "Accepted 3 suggestions / Manual edited 2 places",
     count: 4
   }
 ];
@@ -516,33 +516,33 @@ const versionHistory = [
 const diffSets = {
   default: [
     {
-      label: "摘要首段",
-      old: "目前关于算法透明性的讨论多集中在工具性能层面。",
-      new: "目前关于算法透明性的讨论，多集中在工具性能与流程可解释性层面。",
+      label: "Abstract First Paragraph",
+      old: "Current discussions on algorithmic transparency mostly focus on tool performance.",
+      new: "Current discussions on algorithmic transparency mostly focus on tool performance and process explainability.",
       status: "modified"
     },
     {
-      label: "研究问题",
-      old: "本文尝试说明平台如何影响写作者决策。",
-      new: "本文进一步说明平台约束如何影响写作者的决策路径。",
+      label: "Research Question",
+      old: "This paper attempts to explain how platforms affect writer decisions.",
+      new: "This paper further explains how platform constraints affect writer decision paths.",
       status: "modified"
     },
     {
-      label: "方法说明",
+      label: "Methods Statement",
       old: "",
-      new: "此外，我们补充了样本筛选标准，以便交代方法边界。",
+      new: "Additionally, we added sample selection criteria to clarify methods boundaries.",
       status: "added"
     },
     {
-      label: "结论用语",
-      old: "研究结论具有广泛适用性。",
-      new: "研究结论的适用性仍需结合样本类型与制度语境审慎判断。",
+      label: "Conclusion Language",
+      old: "Research conclusions have broad applicability.",
+      new: "Research conclusion applicability still requires careful judgment based on sample types and institutional context.",
       status: "modified"
     },
     {
-      label: "稳定片段",
-      old: "作者对学科术语的最终判断仍由人完成。",
-      new: "作者对学科术语的最终判断仍由人完成。",
+      label: "Stable Fragment",
+      old: "Final judgment of domain terminology remains with humans.",
+      new: "Final judgment of domain terminology remains with humans.",
       status: "unchanged"
     }
   ]
@@ -553,8 +553,8 @@ const state = {
   authTab: "login",
   hasCompletedOnboarding: false,
   onboardingStep: 1,
-  selectedDiscipline: "社会科学",
-  selectedStage: "结构优化",
+  selectedDiscipline: "Social Sciences",
+  selectedStage: "Structure",
   documents: clone(baseDocuments),
   currentDocId: "doc-1",
   selectedParagraphId: "p-2",
@@ -618,7 +618,7 @@ function updateCurrentDoc(updates) {
 }
 
 function currentBreadcrumb() {
-  return currentDoc().path || ["我的文档", "当前文稿"];
+  return currentDoc().path || ["My Documents", "Current Document"];
 }
 
 function findSectionByParagraph(paragraphId) {
@@ -711,12 +711,12 @@ function ensureDraftDocument() {
   if (!existing) {
     state.documents.unshift({
       id: "doc-new",
-      title: "未命名文稿",
+      title: "Untitled Document",
       discipline: state.selectedDiscipline,
-      modified: "刚刚",
+      modified: "Just now",
       suggestions: 3,
-      path: ["我的文档", "新建文稿", "草稿"],
-      summary: "等待第一次分析"
+      path: ["My Documents", "New Document", "Draft"],
+      summary: "Waiting for first analysis"
     });
   }
 }
@@ -770,22 +770,22 @@ function renderAuthForm() {
     return `
       <form class="form-stack" data-form="register">
         <label class="field">
-          <span class="field__label">姓名</span>
-          <input data-model="auth-name" name="name" placeholder="输入你的姓名" value="${escapeHtml(state.authValues.name)}" />
+          <span class="field__label">Name</span>
+          <input data-model="auth-name" name="name" placeholder="Enter your name" value="${escapeHtml(state.authValues.name)}" />
         </label>
         <label class="field">
-          <span class="field__label">邮箱</span>
+          <span class="field__label">Email</span>
           <input data-model="auth-email" name="email" type="email" placeholder="name@university.edu" value="${escapeHtml(state.authValues.email)}" />
         </label>
         <label class="field">
-          <span class="field__label">密码</span>
-          <input data-model="auth-password" name="password" type="password" placeholder="至少 8 位字符" value="${escapeHtml(state.authValues.password)}" />
+          <span class="field__label">Password</span>
+          <input data-model="auth-password" name="password" type="password" placeholder="At least 8 characters" value="${escapeHtml(state.authValues.password)}" />
         </label>
         <label class="field">
-          <span class="field__label">确认密码</span>
-          <input data-model="auth-confirm" name="confirmPassword" type="password" placeholder="再次输入密码" value="${escapeHtml(state.authValues.confirmPassword)}" />
+          <span class="field__label">Confirm Password</span>
+          <input data-model="auth-confirm" name="confirmPassword" type="password" placeholder="Enter password again" value="${escapeHtml(state.authValues.confirmPassword)}" />
         </label>
-        <button class="button button--primary button--block" type="submit">创建账户并继续</button>
+        <button class="button button--primary button--block" type="submit">Create Account & Continue</button>
       </form>
     `;
   }
@@ -793,21 +793,21 @@ function renderAuthForm() {
   return `
     <form class="form-stack" data-form="login">
       <label class="field">
-        <span class="field__label">邮箱</span>
+        <span class="field__label">Email</span>
         <input data-model="auth-email" name="email" type="email" placeholder="name@university.edu" value="${escapeHtml(state.authValues.email)}" />
       </label>
       <label class="field">
-        <span class="field__label">密码</span>
-        <input data-model="auth-password" name="password" type="password" placeholder="输入你的密码" value="${escapeHtml(state.authValues.password)}" />
+        <span class="field__label">Password</span>
+        <input data-model="auth-password" name="password" type="password" placeholder="Enter your password" value="${escapeHtml(state.authValues.password)}" />
       </label>
       <div class="checkbox-row">
-        <label><input type="checkbox" checked />记住我</label>
-        <button class="inline-link" type="button">忘记密码</button>
+        <label><input type="checkbox" checked />Remember me</label>
+        <button class="inline-link" type="button">Forgot password</button>
       </div>
-      <button class="button button--primary button--block" type="submit">登录 ScholarMind</button>
+      <button class="button button--primary button--block" type="submit">Login to ScholarMind</button>
       <div class="toggle-meta">
-        <strong>首次登录会进入能力边界设置</strong>
-        <p>完成一次 Onboarding 后，再次登录将直接进入主页与历史文档。</p>
+        <strong>First login will enter capability boundary settings</strong>
+        <p>After completing onboarding, subsequent logins will directly go to home and history.</p>
       </div>
     </form>
   `;
@@ -823,8 +823,8 @@ function renderAuthPage() {
         </div>
         <div class="auth-brand-copy">
           <span class="eyebrow">Academic writing copilot</span>
-          <h1 class="page-title">让 AI 成为你的写作伙伴，而非黑箱</h1>
-          <p>ScholarMind 只在结构、表达与逻辑层面给建议。它可以辅助你思考，但不会替你做学科判断。</p>
+          <h1 class="page-title">Let AI be your writing partner, not a black box</h1>
+          <p>ScholarMind only gives suggestions on structure, expression, and logic. It can assist your thinking, but won't make domain judgments for you.</p>
         </div>
         <div class="auth-feature-list">${renderFeatureCards()}</div>
       </aside>
@@ -837,26 +837,26 @@ function renderAuthPage() {
               <span>ScholarMind</span>
             </div>
             <button class="inline-link" data-action="open-limitations" type="button">
-              ${icon("info")}AI 能力说明
+              ${icon("info")}AI Capabilities
             </button>
           </div>
 
           <div class="auth-card__header">
-            <h2 class="section-title">登录 / 注册</h2>
-            <p>顶部品牌区负责表达价值主张，右侧表单区负责把用户带入真实工作流。</p>
+            <h2 class="section-title">Login / Register</h2>
+            <p>Top brand area expresses value proposition, right form area brings users to real workflow.</p>
           </div>
 
           <div class="segmented" role="tablist" aria-label="Auth tabs">
-            <button data-action="switch-auth-tab" data-tab="login" class="${state.authTab === "login" ? "is-active" : ""}" type="button">登录</button>
-            <button data-action="switch-auth-tab" data-tab="register" class="${state.authTab === "register" ? "is-active" : ""}" type="button">注册</button>
+            <button data-action="switch-auth-tab" data-tab="login" class="${state.authTab === "login" ? "is-active" : ""}" type="button">Login</button>
+            <button data-action="switch-auth-tab" data-tab="register" class="${state.authTab === "register" ? "is-active" : ""}" type="button">Register</button>
           </div>
 
           <div class="auth-stack">
             ${renderAuthForm()}
             <div class="auth-sso">
-              <div class="auth-divider">或使用机构账号登录</div>
+              <div class="auth-divider">Or login with institutional account</div>
               <button class="button button--secondary button--block" data-action="sso-login" type="button">
-                ${icon("user")}使用机构 SSO 进入
+                ${icon("user")}Enter with Institutional SSO
               </button>
             </div>
           </div>
@@ -871,8 +871,8 @@ function renderOnboardingContent() {
     return `
       <div class="onboarding-content">
         <div>
-          <h2 class="section-title">你主要写哪类学术文章？</h2>
-          <p>选择一个主要学科领域，让建议标签、示例语言与边界提醒更接近你的真实写作环境。</p>
+          <h2 class="section-title">What type of academic articles do you mainly write?</h2>
+          <p>Select a primary discipline to make suggestion labels and examples closer to your writing context.</p>
         </div>
         <div class="option-grid">
           ${disciplines
@@ -880,7 +880,7 @@ function renderOnboardingContent() {
               (item) => `
                 <button class="option-card ${state.selectedDiscipline === item ? "is-selected" : ""}" data-action="select-discipline" data-value="${item}" type="button">
                   <strong>${item}</strong>
-                  <span>以 ${item} 论文的常见结构和表达约束作为默认上下文。</span>
+                  <span>Use common structure and expression constraints of \$\{item\} papers as default context.</span>
                 </button>
               `
             )
@@ -894,8 +894,8 @@ function renderOnboardingContent() {
     return `
       <div class="onboarding-content">
         <div>
-          <h2 class="section-title">你目前处于哪个写作阶段？</h2>
-          <p>不同阶段需要不同的提示密度。越接近定稿，越需要保守、可解释、可复核的建议。</p>
+          <h2 class="section-title">What writing stage are you currently in?</h2>
+          <p>Different stages need different suggestion density. Closer to final draft, more conservative and explainable suggestions needed.</p>
         </div>
         <div class="option-grid">
           ${stages
@@ -903,7 +903,7 @@ function renderOnboardingContent() {
               (item) => `
                 <button class="option-card ${state.selectedStage === item ? "is-selected" : ""}" data-action="select-stage" data-value="${item}" type="button">
                   <strong>${item}</strong>
-                  <span>让 ScholarMind 在结构、措辞与建议置信度上采用对应策略。</span>
+                  <span>Let ScholarMind use corresponding strategies for structure, wording, and suggestion confidence.</span>
                 </button>
               `
             )
@@ -917,26 +917,26 @@ function renderOnboardingContent() {
     return `
       <div class="onboarding-content">
         <div>
-          <h2 class="section-title">在开始之前，请了解 AI 能做什么</h2>
-          <p>这一页是 Track A 的核心声明。你看到的建议会始终区分“可辅助的任务”和“必须由作者负责的任务”。</p>
+          <h2 class="section-title">Before starting, understand what AI can do</h2>
+          <p>This is the core declaration. Suggestions will always distinguish between "tasks AI can assist" and "tasks the author is responsible for".</p>
         </div>
         <div class="boundary-grid">
           <section class="boundary-card boundary-card--good">
-            <h3>AI 可以帮你</h3>
+            <h3>AI Can Help You</h3>
             <ul>
-              <li>建议段落结构</li>
-              <li>提示逻辑断层</li>
-              <li>改善表达流畅度</li>
-              <li>标注措辞存疑处</li>
+              <li>Suggest paragraph structures</li>
+              <li>Identify logic gaps</li>
+              <li>Improve expression fluency</li>
+              <li>Flag questionable phrasing</li>
             </ul>
           </section>
           <section class="boundary-card boundary-card--limit">
-            <h3>AI 不能替代你</h3>
+            <h3>AI Cannot Replace You</h3>
             <ul>
-              <li>判断学科专业知识正误</li>
-              <li>核实引用来源</li>
-              <li>做出最终修改决策</li>
-              <li>理解特定领域术语偏好</li>
+              <li>Verify domain knowledge accuracy</li>
+              <li>Verify citation sources</li>
+              <li>Make final editing decisions</li>
+              <li>Understand field-specific terminology preferences</li>
             </ul>
           </section>
         </div>
@@ -947,13 +947,13 @@ function renderOnboardingContent() {
   return `
     <div class="onboarding-content">
       <div>
-        <h2 class="section-title">设置完成</h2>
-        <p>你已经确认写作领域、当前阶段以及 AI 的能力边界。下面是本次初始化摘要。</p>
+        <h2 class="section-title">Setup Complete</h2>
+        <p>You have confirmed your writing field, current stage, and AI capability boundaries. Here is the initialization summary.</p>
       </div>
       <div class="summary-list">
-        <div class="summary-item"><span>学科领域</span><span>${state.selectedDiscipline}</span></div>
-        <div class="summary-item"><span>写作阶段</span><span>${state.selectedStage}</span></div>
-        <div class="summary-item"><span>边界声明</span><span>已了解并确认</span></div>
+        <div class="summary-item"><span>Discipline</span><span>${state.selectedDiscipline}</span></div>
+        <div class="summary-item"><span>Writing Stage</span><span>${state.selectedStage}</span></div>
+        <div class="summary-item"><span>Boundary Declaration</span><span>Acknowledged</span></div>
       </div>
     </div>
   `;
@@ -967,7 +967,7 @@ function renderOnboardingPage() {
       <div class="onboarding-shell">
         <div class="onboarding-topbar">
           <button class="inline-link" data-action="open-limitations" type="button">
-            ${icon("info")}AI 能力说明
+            ${icon("info")}AI Capabilities
           </button>
         </div>
         <div class="onboarding-card">
@@ -987,7 +987,7 @@ function renderOnboardingPage() {
                   (step) => `
                     <div class="step-progress__label ${step === state.onboardingStep ? "is-active" : ""}">
                       <span>Step ${step}/4</span>
-                      <strong>${["学科", "阶段", "边界", "完成"][step - 1]}</strong>
+                      <strong>${["Discipline", "Stage", "Boundaries", "Done"][step - 1]}</strong>
                     </div>
                   `
                 )
@@ -998,10 +998,10 @@ function renderOnboardingPage() {
           ${renderOnboardingContent()}
 
           <div class="step-actions">
-            <button class="button button--ghost" ${state.onboardingStep === 1 ? "disabled" : ""} data-action="onboarding-back" type="button">上一步</button>
-            ${state.onboardingStep < 3 ? `<button class="button button--primary" data-action="onboarding-next" type="button">继续</button>` : ""}
-            ${state.onboardingStep === 3 ? `<button class="button button--primary" data-action="onboarding-acknowledge" type="button">我已了解，继续</button>` : ""}
-            ${state.onboardingStep === 4 ? `<button class="button button--primary" data-action="enter-home" type="button">进入 ScholarMind</button>` : ""}
+            <button class="button button--ghost" ${state.onboardingStep === 1 ? "disabled" : ""} data-action="onboarding-back" type="button">Back</button>
+            ${state.onboardingStep < 3 ? `<button class="button button--primary" data-action="onboarding-next" type="button">Continue</button>` : ""}
+            ${state.onboardingStep === 3 ? `<button class="button button--primary" data-action="onboarding-acknowledge" type="button">I understand, continue</button>` : ""}
+            ${state.onboardingStep === 4 ? `<button class="button button--primary" data-action="enter-home" type="button">Enter ScholarMind</button>` : ""}
           </div>
         </div>
       </div>
@@ -1011,10 +1011,10 @@ function renderOnboardingPage() {
 
 function renderSidebar() {
   const navItems = [
-    { id: "home", label: "主页", icon: "home" },
-    { id: "documents", label: "我的文档", icon: "file" },
-    { id: "history", label: "历史记录", icon: "history" },
-    { id: "settings", label: "设置", icon: "settings" }
+    { id: "home", label: "Home", icon: "home" },
+    { id: "documents", label: "My Documents", icon: "file" },
+    { id: "history", label: "History", icon: "history" },
+    { id: "settings", label: "Settings", icon: "settings" }
   ];
 
   return `
@@ -1026,9 +1026,9 @@ function renderSidebar() {
 
       <div class="sidebar__user">
         <div class="sidebar__user-meta">
-          <img src="./img/avatar.png" class="avatar avatar--large" alt="林知遥" />
+          <img src="./img/avatar.png" class="avatar avatar--large" alt="User" />
           <div>
-            <strong>林知遥</strong>
+            <strong>Lin Zhiyao</strong>
             <span>${state.selectedDiscipline} / ${state.selectedStage}</span>
           </div>
         </div>
@@ -1048,9 +1048,9 @@ function renderSidebar() {
 
       <div class="sidebar__foot">
         <div class="sidebar__capability">
-          <strong>AI 能力说明</strong>
-          <p>ScholarMind 只建议结构与表达，不具备学科专业判断能力。</p>
-          <button class="button button--secondary button--block" data-action="open-limitations" type="button">查看系统局限</button>
+          <strong>AI Capabilities</strong>
+          <p>ScholarMind only suggests structure and expression, no domain-specific judgment ability.</p>
+          <button class="button button--secondary button--block" data-action="open-limitations" type="button">View System Limitations</button>
         </div>
       </div>
     </aside>
@@ -1062,40 +1062,40 @@ function renderDashboardHome() {
     <div class="dashboard-stack">
       <div class="boundary-banner">
         <div class="boundary-banner__label">
-          ${icon("warning")}AI 仅建议结构与表达 · 不具备学科专业判断能力
+          ${icon("warning")}AI only suggests structure and expression - no domain-specific judgment
         </div>
-        <button class="inline-link" data-action="open-limitations" type="button">了解详情</button>
+        <button class="inline-link" data-action="open-limitations" type="button">Learn more</button>
       </div>
 
       <section class="hero-card">
         <div>
           <span class="eyebrow">Quick start</span>
-          <h1 class="page-title">开始一篇新的学术写作会话</h1>
-          <p>你可以从空白文稿开始，也可以先粘贴一段文字，让 ScholarMind 先生成结构与表达层面的初步建议。</p>
+          <h1 class="page-title">Start a new academic writing session</h1>
+          <p>Start with a blank document or paste text for ScholarMind to generate structural and expression suggestions.</p>
         </div>
-        <button class="button button--primary" data-action="create-doc" type="button">${icon("plus")}新建文档</button>
+        <button class="button button--primary" data-action="create-doc" type="button">${icon("plus")}New Document</button>
       </section>
 
       <div class="quick-grid">
         <section class="quick-card quick-card--cta">
           <div class="quick-card__body">
             <span class="eyebrow">Blank draft</span>
-            <h2 class="section-title">新建文档</h2>
-            <p>进入三栏编辑器，从章节导航、建议面板和版本历史开始完整写作流程。</p>
+            <h2 class="section-title">New Document</h2>
+            <p>Enter the three-column editor and start the complete writing flow with section navigation, suggestion panel, and version history.</p>
           </div>
-          <button class="button button--secondary" data-action="create-doc" type="button">${icon("plus")}创建空白草稿</button>
+          <button class="button button--secondary" data-action="create-doc" type="button">${icon("plus")}Create Blank Draft</button>
         </section>
 
         <section class="quick-card">
           <div class="quick-card__body">
             <span class="eyebrow">Paste text</span>
-            <h2 class="section-title">粘贴文本快捷入口</h2>
-            <p>把你已经写好的引言、摘要或方法段先放进来，直接进入建议面板。</p>
+            <h2 class="section-title">Quick Text Paste</h2>
+            <p>Paste your written introduction, abstract, or methods section directly into the suggestion panel.</p>
           </div>
           <label class="field field--textarea paste-box">
-            <textarea data-model="quick-paste" placeholder="粘贴一段你的学术写作内容，原型会带着这段文本进入编辑器。">${escapeHtml(state.quickPaste)}</textarea>
+            <textarea data-model="quick-paste" placeholder="Paste your academic writing content">${escapeHtml(state.quickPaste)}</textarea>
           </label>
-          <button class="button button--primary" data-action="create-doc" type="button">${icon("paste")}导入并分析</button>
+          <button class="button button--primary" data-action="create-doc" type="button">${icon("paste")}Import and Analyze</button>
         </section>
       </div>
 
@@ -1103,9 +1103,9 @@ function renderDashboardHome() {
         <div class="recent-docs__header">
           <div>
             <span class="eyebrow">Recent documents</span>
-            <h2 class="section-title">最近文档</h2>
+            <h2 class="section-title">Recent Documents</h2>
           </div>
-          <span class="pill">${state.documents.length} 份文稿</span>
+          <span class="pill">${state.documents.length} documents</span>
         </div>
 
         <div class="doc-list">
@@ -1120,7 +1120,7 @@ function renderDashboardHome() {
                       <span class="tag">${doc.discipline}</span>
                     </div>
                     <div class="doc-row__meta">
-                      <span>最后修改：${doc.modified}</span>
+                      <span>Last modified: ${doc.modified}</span>
                       <span>${doc.summary}</span>
                     </div>
                   </div>
@@ -1136,8 +1136,8 @@ function renderDashboardHome() {
 }
 
 function renderDocumentsPage() {
-  const allDisciplines = ["社会科学", "医学", "商科"];
-  const filters = [{ value: "all", label: "全部" }, ...allDisciplines.map((d) => ({ value: d, label: d }))];
+  const allDisciplines = ["Social Sciences", "Medicine", "Business"];
+  const filters = [{ value: "all", label: "All" }, ...allDisciplines.map((d) => ({ value: d, label: d }))];
   const filtered = state.documents
     .filter((doc) => doc.id !== "doc-new")
     .filter((doc) => state.docFilter === "all" || doc.discipline === state.docFilter);
@@ -1147,9 +1147,9 @@ function renderDocumentsPage() {
       <div class="page-header-row">
         <div>
           <span class="eyebrow">My documents</span>
-          <h1 class="page-title">我的文档</h1>
+          <h1 class="page-title">My Documents</h1>
         </div>
-        <button class="button button--primary button--compact" data-action="create-doc" type="button">${icon("plus")}新建文档</button>
+        <button class="button button--primary button--compact" data-action="create-doc" type="button">${icon("plus")}New Document</button>
       </div>
 
       <div class="segmented" role="tablist" aria-label="Document filter">
@@ -1175,8 +1175,8 @@ function renderDocumentsPage() {
                         <span class="tag">${doc.discipline}</span>
                       </div>
                       <div class="doc-row__meta">
-                        <span>路径：${doc.path.join(" / ")}</span>
-                        <span>最后修改：${doc.modified}</span>
+                        <span>Path: ${doc.path.join(" / ")}</span>
+                        <span>Last modified: ${doc.modified}</span>
                         <span>${doc.summary}</span>
                       </div>
                     </div>
@@ -1189,7 +1189,7 @@ function renderDocumentsPage() {
         `
         : `
           <div class="panel-empty">
-            <p>当前筛选条件下没有文档。</p>
+            <p>No documents under current filter.</p>
           </div>
         `}
     </div>
@@ -1198,10 +1198,10 @@ function renderDocumentsPage() {
 
 function renderHistoryPage() {
   const filterOptions = [
-    { value: "all", label: "全部" },
-    { value: "accepted", label: "接受建议" },
-    { value: "rejected", label: "拒绝建议" },
-    { value: "manual", label: "手动编辑" }
+    { value: "all", label: "All" },
+    { value: "accepted", label: "Accepted" },
+    { value: "rejected", label: "Rejected" },
+    { value: "manual", label: "Manual Edit" }
   ];
 
   const filtered = activityLog.filter(
@@ -1224,7 +1224,7 @@ function renderHistoryPage() {
       <div class="page-header-row">
         <div>
           <span class="eyebrow">Activity</span>
-          <h1 class="page-title">历史记录</h1>
+          <h1 class="page-title">History</h1>
         </div>
       </div>
 
@@ -1259,7 +1259,7 @@ function renderHistoryPage() {
                             </div>
                             <div class="activity-item__side">
                               <span class="activity-time">${item.time}</span>
-                              <button class="button button--ghost button--tiny" data-action="open-doc" data-doc-id="${item.docId}" type="button">打开文档</button>
+                              <button class="button button--ghost button--tiny" data-action="open-doc" data-doc-id="${item.docId}" type="button">Open Document</button>
                             </div>
                           </div>
                         `
@@ -1272,7 +1272,7 @@ function renderHistoryPage() {
             .join("")
         : `
           <div class="panel-empty">
-            <p>当前筛选条件下没有操作记录。</p>
+            <p>No activity records under current filter.</p>
           </div>
         `}
     </div>
@@ -1285,19 +1285,19 @@ function renderSettingsPage() {
       <div class="page-header-row">
         <div>
           <span class="eyebrow">Preferences</span>
-          <h1 class="page-title">设置</h1>
+          <h1 class="page-title">Settings</h1>
         </div>
       </div>
 
       <div class="settings-stack">
         <div class="card">
           <div class="settings-section-header">
-            <h2 class="section-title">个人信息</h2>
+            <h2 class="section-title">Personal Information</h2>
           </div>
           <div class="settings-profile-row">
-            <img src="./img/avatar.png" class="avatar avatar--large" alt="林知遥" />
+            <img src="./img/avatar.png" class="avatar avatar--large" alt="User" />
             <div class="settings-profile-info">
-              <strong>林知遥</strong>
+              <strong>Lin Zhiyao</strong>
               <span>lin@university.edu</span>
             </div>
           </div>
@@ -1305,52 +1305,52 @@ function renderSettingsPage() {
 
         <div class="card">
           <div class="settings-section-header">
-            <h2 class="section-title">写作偏好</h2>
-            <p>当前配置在 Onboarding 中选定，可随时重新设置。</p>
+            <h2 class="section-title">Writing Preferences</h2>
+            <p>Current configuration was set in onboarding, can be reset anytime.</p>
           </div>
           <div class="settings-pref-row">
             <div class="settings-pref-item">
-              <span class="field__label">学科领域</span>
+              <span class="field__label">Discipline</span>
               <span class="tag">${state.selectedDiscipline}</span>
             </div>
             <div class="settings-pref-item">
-              <span class="field__label">写作阶段</span>
+              <span class="field__label">Writing Stage</span>
               <span class="tag">${state.selectedStage}</span>
             </div>
           </div>
-          <button class="button button--secondary button--compact" data-action="open-onboarding" type="button">${icon("refresh")}重新设置写作偏好</button>
+          <button class="button button--secondary button--compact" data-action="open-onboarding" type="button">${icon("refresh")}Reset Writing Preferences</button>
         </div>
 
         <div class="card">
           <div class="settings-section-header">
-            <h2 class="section-title">AI 行为设置</h2>
-            <p>以下为当前生效的建议策略，仅供查看。</p>
+            <h2 class="section-title">AI Behavior Settings</h2>
+            <p>Current active suggestion strategies, view only.</p>
           </div>
           <div class="settings-ai-rows">
             <div class="settings-ai-row">
-              <span>建议密度</span>
+              <span>Suggestion Density</span>
               <div class="segmented segmented--small">
-                <button type="button">高</button>
-                <button class="is-active" type="button">中</button>
-                <button type="button">低</button>
+                <button type="button">High</button>
+                <button class="is-active" type="button">Medium</button>
+                <button type="button">Low</button>
               </div>
             </div>
             <div class="settings-ai-row">
-              <span>显示存疑建议</span>
-              <span class="settings-toggle settings-toggle--on">${icon("check")}开启</span>
+              <span>Show Questionable Suggestions</span>
+              <span class="settings-toggle settings-toggle--on">${icon("check")}On</span>
             </div>
             <div class="settings-ai-row">
-              <span>自动保存间隔</span>
-              <span class="tag">每 30 秒</span>
+              <span>Auto-save Interval</span>
+              <span class="tag">Every 30 seconds</span>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="settings-section-header">
-            <h2 class="section-title">账户</h2>
+            <h2 class="section-title">Account</h2>
           </div>
-          <button class="button button--danger button--compact" data-action="logout" type="button">${icon("logout")}退出登录</button>
+          <button class="button button--danger button--compact" data-action="logout" type="button">${icon("logout")}Logout</button>
         </div>
       </div>
     </div>
@@ -1407,7 +1407,7 @@ function renderParagraphCard(paragraph) {
   const related = suggestionsForParagraph(paragraph.id).filter((suggestion) => suggestion.status === "pending");
   return `
     <button class="editor-paragraph ${state.selectedParagraphId === paragraph.id ? "is-selected" : ""}" data-action="select-paragraph" data-paragraph-id="${paragraph.id}" data-severity="${paragraphSeverity(paragraph.id)}" type="button">
-      <small>${paragraph.label}${related.length ? ` · ${related.length} 条待处理建议` : ""}</small>
+      <small>${paragraph.label}${related.length ? ` - ${related.length} pending suggestions` : ""}</small>
       <p>${paragraph.text}</p>
     </button>
   `;
@@ -1415,25 +1415,25 @@ function renderParagraphCard(paragraph) {
 
 function renderSuggestionCard(suggestion) {
   const confidenceClass = suggestion.confidence === "questionable" ? "pill--warning" : "pill--blue";
-  const confidenceLabel = suggestion.confidence === "questionable" ? "存疑" : "高可信";
+  const confidenceLabel = suggestion.confidence === "questionable" ? "Questionable" : "High";
 
   return `
     <article class="suggestion-card ${state.selectedSuggestionId === suggestion.id ? "is-selected" : ""}">
       <div class="suggestion-card__meta">
         <span class="pill ${confidenceClass}">${confidenceLabel}</span>
         <span class="tag">${suggestion.type}</span>
-        <span class="pill">${suggestion.status === "pending" ? "待处理" : suggestion.status === "accepted" ? "已接受" : "已拒绝"}</span>
+        <span class="pill">${suggestion.status === "pending" ? "Pending" : suggestion.status === "accepted" ? "Accepted" : "Rejected"}</span>
       </div>
       <div class="suggestion-card__body">
         <p>${suggestion.text}</p>
         ${suggestion.note ? `<small>${suggestion.note}</small>` : ""}
-        ${suggestion.confidence === "questionable" && suggestion.status === "pending" ? `<button class="inline-link" data-action="show-misunderstanding" type="button">${icon("warning")}查看风险原因</button>` : ""}
+        ${suggestion.confidence === "questionable" && suggestion.status === "pending" ? `<button class="inline-link" data-action="show-misunderstanding" type="button">${icon("warning")}View Risk Reason</button>` : ""}
       </div>
       ${suggestion.status === "pending" ? `
         <div class="suggestion-card__actions">
-          <button class="button button--primary button--tiny" data-action="accept-suggestion" data-suggestion-id="${suggestion.id}" type="button">接受</button>
-          <button class="button button--secondary button--tiny" data-action="modify-suggestion" data-suggestion-id="${suggestion.id}" type="button">修改</button>
-          <button class="button button--ghost button--tiny" data-action="reject-suggestion" data-suggestion-id="${suggestion.id}" type="button">拒绝</button>
+          <button class="button button--primary button--tiny" data-action="accept-suggestion" data-suggestion-id="${suggestion.id}" type="button">Accept</button>
+          <button class="button button--secondary button--tiny" data-action="modify-suggestion" data-suggestion-id="${suggestion.id}" type="button">Modify</button>
+          <button class="button button--ghost button--tiny" data-action="reject-suggestion" data-suggestion-id="${suggestion.id}" type="button">Reject</button>
         </div>
       ` : ""}
     </article>
@@ -1449,8 +1449,8 @@ function renderSuggestionsPane() {
     return `
       <aside class="editor-pane editor-pane--rail">
         <div class="collapsed-rail">
-          <button data-action="toggle-right" type="button" title="展开建议面板">${icon("chevronLeft")}</button>
-          <button class="${pending.some((item) => item.confidence === "questionable") ? "is-alert" : ""}" data-action="toggle-right" type="button" title="当前建议数量">${stats.pending}</button>
+          <button data-action="toggle-right" type="button" title="Expand suggestions">${icon("chevronLeft")}</button>
+          <button class="${pending.some((item) => item.confidence === "questionable") ? "is-alert" : ""}" data-action="toggle-right" type="button" title="Current suggestions count">${stats.pending}</button>
         </div>
       </aside>
     `;
@@ -1462,24 +1462,24 @@ function renderSuggestionsPane() {
         <div class="suggestion-panel">
           <div class="suggestion-panel__header">
             <div class="split-row">
-              <h3>建议面板</h3>
-              <button class="button button--ghost button--tiny" data-action="toggle-right" type="button">${icon("chevronRight")}收起</button>
+              <h3>Suggestions</h3>
+              <button class="button button--ghost button--tiny" data-action="toggle-right" type="button">${icon("chevronRight")}Collapse</button>
             </div>
             <div class="suggestion-panel__counts">
-              <span class="pill">待处理 ${stats.pending}</span>
-              <span class="pill pill--success">已接受 ${stats.accepted}</span>
-              <span class="pill pill--danger">已拒绝 ${stats.rejected}</span>
+              <span class="pill">Pending ${stats.pending}</span>
+              <span class="pill pill--success">Accepted ${stats.accepted}</span>
+              <span class="pill pill--danger">Rejected ${stats.rejected}</span>
             </div>
           </div>
           <div class="suggestion-scroll">
             <div class="panel-state panel-state--offline">
-              <h4>当前处于离线模式，AI 建议暂停加载</h4>
-              <p>以下为上次联网时缓存下来的建议，仅供参考。编辑器正文仍可继续修改，草稿会自动保存到本地。</p>
+              <h4>Currently offline, AI suggestions paused</h4>
+              <p>Cached suggestions from last session for reference. Editor content can still be modified, drafts auto-saved locally.</p>
             </div>
-            <div class="suggestion-list">${related.length ? related.map(renderSuggestionCard).join("") : `<div class="panel-empty"><p>当前段落暂无缓存建议。</p></div>`}</div>
+            <div class="suggestion-list">${related.length ? related.map(renderSuggestionCard).join("") : `<div class="panel-empty"><p>No cached suggestions for current paragraph.</p></div>`}</div>
           </div>
           <div class="suggestion-footer">
-            <button class="button button--primary button--block" data-action="retry-connection" type="button">${icon("refresh")}${state.serviceStatus === "recovering" ? "正在重连…" : "重试连接"}</button>
+            <button class="button button--primary button--block" data-action="retry-connection" type="button">${icon("refresh")}${state.serviceStatus === "recovering" ? "Reconnecting..." : "Retry Connection"}</button>
           </div>
         </div>
       </aside>
@@ -1492,22 +1492,22 @@ function renderSuggestionsPane() {
         <div class="suggestion-panel">
           <div class="suggestion-panel__header">
             <div class="split-row">
-              <h3>建议面板</h3>
-              <button class="button button--ghost button--tiny" data-action="toggle-right" type="button">${icon("chevronRight")}收起</button>
+              <h3>Suggestions</h3>
+              <button class="button button--ghost button--tiny" data-action="toggle-right" type="button">${icon("chevronRight")}Collapse</button>
             </div>
           </div>
           <div class="suggestion-scroll">
             <div class="panel-state panel-state--warning">
-              <h4>${icon("warning")}AI 可能误解了该段内容</h4>
-              <p>AI 对此段落的建议可信度较低，可能因学科术语或表达方式未被正确识别。你可以补充语境后重新分析，或忽略本段全部建议。</p>
+              <h4>${icon("warning")}AI May Have Misunderstood This Paragraph</h4>
+              <p>AI suggestions for this paragraph have low confidence due to possibly unrecognized domain terminology. You can add context and re-analyze, or ignore all suggestions.</p>
               <form class="form-stack" data-form="context">
                 <label class="field field--textarea">
-                  <textarea data-model="context-draft" name="context" placeholder="例如：本段为质性研究方法描述，强调的是方法边界而非因果机制。">${escapeHtml(state.contextDraft)}</textarea>
+                  <textarea data-model="context-draft" name="context" placeholder="e.g., This paragraph describes qualitative research methods, focusing on method boundaries rather than causal mechanisms.">${escapeHtml(state.contextDraft)}</textarea>
                 </label>
-                <button class="button button--primary button--block" type="submit">补充语境并重新分析</button>
+                <button class="button button--primary button--block" type="submit">Add Context & Re-analyze</button>
               </form>
-              <button class="button button--secondary button--block" data-action="ignore-current-paragraph" type="button">忽略所有建议</button>
-              <p class="muted">如果问题持续出现，可在设置中调整学科背景偏好。</p>
+              <button class="button button--secondary button--block" data-action="ignore-current-paragraph" type="button">Ignore All Suggestions</button>
+              <p class="muted">If problem persists, adjust discipline preferences in settings.</p>
             </div>
           </div>
         </div>
@@ -1520,13 +1520,13 @@ function renderSuggestionsPane() {
       <div class="suggestion-panel">
         <div class="suggestion-panel__header">
           <div class="split-row">
-            <h3>建议面板</h3>
-            <button class="button button--ghost button--tiny" data-action="toggle-right" type="button">${icon("chevronRight")}收起</button>
+            <h3>Suggestions</h3>
+            <button class="button button--ghost button--tiny" data-action="toggle-right" type="button">${icon("chevronRight")}Collapse</button>
           </div>
           <div class="suggestion-panel__counts">
-            <span class="pill">待处理 ${stats.pending}</span>
-            <span class="pill pill--success">已接受 ${stats.accepted}</span>
-            <span class="pill pill--danger">已拒绝 ${stats.rejected}</span>
+            <span class="pill">Pending ${stats.pending}</span>
+            <span class="pill pill--success">Accepted ${stats.accepted}</span>
+            <span class="pill pill--danger">Rejected ${stats.rejected}</span>
           </div>
         </div>
         <div class="suggestion-scroll">
@@ -1534,13 +1534,13 @@ function renderSuggestionsPane() {
             ? pending.map(renderSuggestionCard).join("")
             : `
               <div class="panel-empty">
-                <p>当前段落没有待处理建议。你可以继续编辑，或重新分析全文获取新的结构提示。</p>
+                <p>No pending suggestions for current paragraph. Continue editing or re-analyze full text for new structure hints.</p>
               </div>
             `}
         </div>
         <div class="suggestion-footer">
-          <button class="button button--ghost button--block" data-action="reject-all" type="button">一键拒绝全部</button>
-          <button class="button button--secondary button--block" data-action="simulate-offline" type="button">重新分析</button>
+          <button class="button button--ghost button--block" data-action="reject-all" type="button">Reject All</button>
+          <button class="button button--secondary button--block" data-action="simulate-offline" type="button">Re-analyze</button>
         </div>
       </div>
     </aside>
@@ -1550,12 +1550,12 @@ function renderSuggestionsPane() {
 function renderUserMenu() {
   return `
     <div class="editor-user-menu">
-      <button class="button button--ghost button--compact" data-action="toggle-user-menu" type="button">${icon("user")}林知遥</button>
+      <button class="button button--ghost button--compact" data-action="toggle-user-menu" type="button">${icon("user")}User</button>
       ${state.userMenuOpen
         ? `
           <div class="user-menu__panel">
-            <button class="user-menu__item" data-action="open-limitations" type="button">${icon("info")}AI 能力说明</button>
-            <button class="user-menu__item" data-action="logout" type="button">${icon("logout")}退出登录</button>
+            <button class="user-menu__item" data-action="open-limitations" type="button">${icon("info")}AI Capabilities</button>
+            <button class="user-menu__item" data-action="logout" type="button">${icon("logout")}Logout</button>
           </div>
         `
         : ""}
@@ -1565,15 +1565,15 @@ function renderUserMenu() {
 
 function renderCitationsPane() {
   const confidenceClass = (c) => c === "questionable" ? "pill--warning" : "pill--blue";
-  const confidenceLabel = (c) => c === "questionable" ? "存疑" : "高可信";
+  const confidenceLabel = (c) => c === "questionable" ? "Questionable" : "High";
 
   return `
     <div class="editor-pane__body">
       <div class="citations-header">
         <span class="eyebrow">Citations</span>
-        <span class="pill">已识别 ${baseCitations.length} 处</span>
+        <span class="pill">Identified ${baseCitations.length} citations</span>
       </div>
-      <p class="citations-hint">AI 已扫描全文，以下引用待核实，请点击链接确认来源。</p>
+      <p class="citations-hint">AI scanned the full text. Citations below need verification, click links to confirm sources.</p>
       <div class="citation-list">
         ${baseCitations
           .map(
@@ -1582,7 +1582,7 @@ function renderCitationsPane() {
                 <div class="citation-card__meta">
                   <span class="pill ${confidenceClass(cit.confidence)}">${confidenceLabel(cit.confidence)}</span>
                   ${cit.status === "searching"
-                    ? `<span class="citation-searching">${icon("refresh")}AI 正在搜索…</span>`
+                    ? `<span class="citation-searching">${icon("refresh")}Searching...</span>`
                     : `<span class="citation-card__author">${cit.author} · ${cit.year}</span>`}
                 </div>
                 <p class="citation-card__raw">「${cit.raw}」</p>
@@ -1599,7 +1599,7 @@ function renderCitationsPane() {
           )
           .join("")}
       </div>
-      <button class="button button--secondary button--block" data-action="rescan-citations" type="button">${icon("spark")}重新扫描全文引用</button>
+      <button class="button button--secondary button--block" data-action="rescan-citations" type="button">${icon("spark")}Rescan Citations</button>
     </div>
   `;
 }
@@ -1617,7 +1617,7 @@ function renderEditorPage() {
             ? `
               <form class="title-edit" data-form="rename-title">
                 <input data-model="title-draft" name="title" value="${escapeHtml(state.titleDraft)}" />
-                <button class="button button--primary button--compact" type="submit">${icon("check")}保存</button>
+                <button class="button button--primary button--compact" type="submit">${icon("check")}Save</button>
               </form>
             `
             : `
@@ -1632,14 +1632,14 @@ function renderEditorPage() {
         </div>
 
         <div class="editor-warning-pill">
-          ${icon("warning")}AI 只建议结构与表达，不替代学科判断
-          <button class="inline-link" data-action="open-limitations" type="button">了解详情</button>
+          ${icon("warning")}AI only suggests structure and expression, not domain judgment
+          <button class="inline-link" data-action="open-limitations" type="button">Learn more</button>
         </div>
 
         <div class="editor-actions">
-          <button class="button button--ghost button--compact" data-action="go-home" type="button">${icon("home")}主页</button>
-          <button class="button button--secondary button--compact" data-action="open-versions" type="button">${icon("compare")}版本历史</button>
-          <button class="button button--secondary button--compact" data-action="export-doc" type="button">${icon("export")}导出</button>
+          <button class="button button--ghost button--compact" data-action="go-home" type="button">${icon("home")}Home</button>
+          <button class="button button--secondary button--compact" data-action="open-versions" type="button">${icon("compare")}Version History</button>
+          <button class="button button--secondary button--compact" data-action="export-doc" type="button">${icon("export")}Export</button>
           ${renderUserMenu()}
         </div>
       </header>
@@ -1647,9 +1647,9 @@ function renderEditorPage() {
       ${state.serviceStatus === "offline"
         ? `
           <div class="editor-banner editor-banner--offline">
-            <strong>${icon("warning")}AI 服务暂时不可用，正在尝试重连…</strong>
-            <p>草稿已自动保存于本地 · ${state.localSaveTime || formattedTime()}</p>
-            <button class="button button--secondary button--tiny" data-action="retry-connection" type="button">重试连接</button>
+            <strong>${icon("warning")}AI service temporarily unavailable, reconnecting...</strong>
+            <p>Draft auto-saved locally - ${state.localSaveTime || formattedTime()}</p>
+            <button class="button button--secondary button--tiny" data-action="retry-connection" type="button">Retry Connection</button>
           </div>
         `
         : ""}
@@ -1657,8 +1657,8 @@ function renderEditorPage() {
       ${state.serviceStatus === "recovering"
         ? `
           <div class="editor-banner editor-banner--recovering">
-            <strong>${icon("refresh")}正在重连 AI 服务…</strong>
-            <p>编辑器正文不受影响，你可以继续修改当前段落。</p>
+            <strong>${icon("refresh")}Reconnecting AI service...</strong>
+            <p>Editor content unaffected, you can continue editing current paragraph.</p>
           </div>
         `
         : ""}
@@ -1666,8 +1666,8 @@ function renderEditorPage() {
       ${state.serviceStatus === "recovered"
         ? `
           <div class="editor-banner editor-banner--recovered">
-            <strong>${icon("check")}AI 服务已恢复</strong>
-            <p>建议面板重新可用，离线横幅会在数秒后自动消失。</p>
+            <strong>${icon("check")}AI Service Recovered</strong>
+            <p>Suggestions panel available again, offline banner will disappear in a few seconds.</p>
           </div>
         `
         : ""}
@@ -1677,17 +1677,17 @@ function renderEditorPage() {
           ${state.leftCollapsed
             ? `
               <div class="collapsed-rail">
-                <button data-action="toggle-left" type="button" title="展开左栏">${icon("chevronRight")}</button>
-                <button data-action="open-structure" type="button" title="查看结构图">${icon("branch")}</button>
+                <button data-action="toggle-left" type="button" title="Expand left panel">${icon("chevronRight")}</button>
+                <button data-action="open-structure" type="button" title="View structure">${icon("branch")}</button>
               </div>
             `
             : `
               <div class="editor-pane__header">
                 <div class="editor-left-tabs">
-                  <button class="${state.editorLeftTab === "navigation" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="navigation" type="button">章节导航</button>
-                  <button class="${state.editorLeftTab === "citations" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="citations" type="button">引用管理</button>
+                  <button class="${state.editorLeftTab === "navigation" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="navigation" class="${state.editorLeftTab === "navigation" ? "is-active" : ""}" type="button">Section Navigation</button>
+                  <button class="${state.editorLeftTab === "citations" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="citations" class="${state.editorLeftTab === "citations" ? "is-active" : ""}" type="button">Citations</button>
                 </div>
-                <button class="button button--ghost button--tiny" data-action="toggle-left" type="button">${icon("chevronLeft")}收起</button>
+                <button class="button button--ghost button--tiny" data-action="toggle-left" type="button">${icon("chevronLeft")}Collapse</button>
               </div>
               ${state.editorLeftTab === "citations"
                 ? renderCitationsPane()
@@ -1699,7 +1699,7 @@ function renderEditorPage() {
                           (section) => `
                             <button class="section-button ${currentSection.id === section.id ? "is-active" : ""}" data-action="select-section" data-section-id="${section.id}" type="button">
                               <strong>${section.anchor}</strong>
-                              <span>${section.paragraphs.length} 个段落</span>
+                              <span>${section.paragraphs.length} paragraphs</span>
                             </button>
                           `
                         )
@@ -1707,12 +1707,12 @@ function renderEditorPage() {
                     </div>
                     <div>
                       <div class="split-row">
-                        <h3>当前章节逻辑树</h3>
-                        <span class="pill pill--warning">弱问题段落</span>
+                        <h3>Current Section Logic Tree</h3>
+                        <span class="pill pill--warning">Weak paragraph</span>
                       </div>
                       ${renderMiniLogicTree()}
                     </div>
-                    <button class="button button--secondary button--block" data-action="open-structure" type="button">${icon("branch")}查看结构图</button>
+                    <button class="button button--secondary button--block" data-action="open-structure" type="button">${icon("branch")}View Structure</button>
                   </div>
                 `}
             `}
@@ -1722,11 +1722,11 @@ function renderEditorPage() {
           <div class="editor-meta">
             <div class="editor-meta__title">
               <span class="eyebrow">Editing</span>
-              <p>当前文稿采用 1.8 行距的宽松排版，建议与段落状态通过左侧彩色竖条表示。</p>
+              <p>Current document uses 1.8 line-height. Suggestions and paragraph status shown by colored bars on the left.</p>
             </div>
             <div class="editor-stat-row">
-              <span class="pill">字数 2,486</span>
-              <span class="pill pill--blue">待处理建议 ${pendingCount}</span>
+              <span class="pill">Words 2,486</span>
+              <span class="pill pill--blue">Pending ${pendingCount}</span>
               <span class="pill">${doc.discipline}</span>
             </div>
           </div>
@@ -1749,11 +1749,11 @@ function renderEditorPage() {
 
           <div class="editor-toolbar">
             <div class="editor-toolbar__group">
-              <button class="button button--secondary" data-action="analyze-paragraph" type="button">${icon("spark")}分析当前段落</button>
-              <button class="button button--primary" data-action="simulate-offline" type="button">${icon("refresh")}分析全文</button>
+              <button class="button button--secondary" data-action="analyze-paragraph" type="button">${icon("spark")}Analyze Paragraph</button>
+              <button class="button button--primary" data-action="simulate-offline" type="button">${icon("refresh")}Analyze All</button>
             </div>
             <div class="editor-toolbar__group">
-              <button class="button button--ghost" data-action="open-limitations" type="button">${icon("info")}查看系统局限</button>
+              <button class="button button--ghost" data-action="open-limitations" type="button">${icon("info")}View Limitations</button>
             </div>
           </div>
         </main>
@@ -1770,28 +1770,28 @@ function renderLimitationsOverlay() {
       <div class="overlay__card">
         <div class="overlay__header">
           <div>
-            <h2>ScholarMind AI 的能力边界</h2>
-            <p>所有建议都只服务于结构与表达层面的辅助，最终写作决策始终由作者负责。</p>
+            <h2>ScholarMind AI Capabilities</h2>
+            <p>All suggestions serve structure and expression assistance only. Final writing decisions always remain with the author.</p>
           </div>
           <button class="overlay__close" data-action="close-overlay" type="button">${icon("close")}</button>
         </div>
 
         <div class="capability-grid">
           <section class="capability-column">
-            <h3>${icon("check")}AI 能够做到</h3>
+            <h3>${icon("check")}AI Can Do</h3>
             <ul>${capabilityCan.map((item) => `<li>${item}</li>`).join("")}</ul>
           </section>
           <section class="capability-column">
-            <h3>${icon("warning")}AI 无法做到</h3>
+            <h3>${icon("warning")}AI Cannot Do</h3>
             <ul>${capabilityCannot.map((item) => `<li>${item}</li>`).join("")}</ul>
           </section>
         </div>
 
-        <div class="capability-note">AI 给出的所有建议仅供参考，最终的写作决策由你决定。存疑标签的建议请结合专业判断谨慎采纳。</div>
+        <div class="capability-note">All AI suggestions are for reference only. Final writing decisions are yours. Questionable suggestions should be carefully considered with professional judgment.</div>
 
         <div class="step-actions">
           <div></div>
-          <button class="button button--primary" data-action="close-overlay" type="button">我知道了</button>
+          <button class="button button--primary" data-action="close-overlay" type="button">Got it</button>
         </div>
       </div>
     </div>
@@ -1807,7 +1807,7 @@ function renderStructureOverlay() {
     <div class="overlay" data-backdrop="true">
       <div class="fullscreen-modal">
         <div class="fullscreen-modal__header">
-          <h2>文章逻辑结构图</h2>
+          <h2>Document Logic Structure</h2>
           <button class="overlay__close" data-action="close-overlay" type="button">${icon("close")}</button>
         </div>
 
@@ -1825,7 +1825,7 @@ function renderStructureOverlay() {
                           (node) => `
                             <button class="logic-node ${state.selectedStructureNodeId === node.id ? "is-selected" : ""}" data-status="${node.status}" data-action="select-structure-node" data-node-id="${node.id}" type="button">
                               <strong>${node.label}</strong>
-                              <span>${node.status === "weak" ? "逻辑衔接弱" : node.status === "missing" ? "推荐段落缺失" : "结构正常"}</span>
+                              <span>${node.status === "weak" ? "Weak connection" : node.status === "missing" ? "Missing recommended" : "Normal structure"}</span>
                             </button>
                           `
                         )
@@ -1839,15 +1839,15 @@ function renderStructureOverlay() {
 
           <aside class="logic-inspector">
             <span class="eyebrow">Node detail</span>
-            <h3>${state.selectedStructureNodeId === "missing-limitations" ? "缺失节点建议" : getParagraph(state.selectedStructureNodeId).label}</h3>
+            <h3>${state.selectedStructureNodeId === "missing-limitations" ? "Missing Node Suggestion" : getParagraph(state.selectedStructureNodeId).label}</h3>
             <p>${detail}</p>
-            ${state.selectedStructureNodeId !== "missing-limitations" ? `<button class="button button--secondary button--block" data-action="jump-to-selected-node" type="button">在编辑器中高亮对应段落</button>` : ""}
+            ${state.selectedStructureNodeId !== "missing-limitations" ? `<button class="button button--secondary button--block" data-action="jump-to-selected-node" type="button">Highlight in Editor</button>` : ""}
           </aside>
         </div>
 
         <div class="fullscreen-modal__footer">
-          <p>问题数量汇总：橙色 ${weakCount} 处衔接弱 / 红色 ${missingCount} 处缺失</p>
-          <button class="button button--primary" data-action="close-overlay" type="button">关闭，返回编辑</button>
+          <p>Issues: ${weakCount} weak connections in orange / ${missingCount} missing in red</p>
+          <button class="button button--primary" data-action="close-overlay" type="button">Close & Return</button>
         </div>
       </div>
     </div>
@@ -1861,7 +1861,7 @@ function renderVersionOverlay() {
     <div class="overlay" data-backdrop="true">
       <div class="fullscreen-modal">
         <div class="fullscreen-modal__header">
-          <h2>版本历史与对比</h2>
+          <h2>Version History & Comparison</h2>
           <button class="overlay__close" data-action="close-overlay" type="button">${icon("close")}</button>
         </div>
 
@@ -1873,7 +1873,7 @@ function renderVersionOverlay() {
                   <button class="version-item ${state.versionB === version.id ? "is-active" : ""}" data-action="select-version-card" data-version-id="${version.id}" type="button">
                     <strong>${version.time}</strong>
                     <span>${version.summary}</span>
-                    <small>建议角标 ${version.count}</small>
+                    <small>${version.count} suggestions</small>
                   </button>
                 `
               )
@@ -1884,7 +1884,7 @@ function renderVersionOverlay() {
             <div class="version-diff__toolbar">
               <div class="split-row">
                 <label class="field">
-                  <span class="field__label">A 版本</span>
+                  <span class="field__label">Version A</span>
                   <select data-model="version-a">
                     ${versionHistory
                       .map(
@@ -1896,7 +1896,7 @@ function renderVersionOverlay() {
                   </select>
                 </label>
                 <label class="field">
-                  <span class="field__label">B 版本</span>
+                  <span class="field__label">Version B</span>
                   <select data-model="version-b">
                     ${versionHistory
                       .map(
@@ -1909,14 +1909,14 @@ function renderVersionOverlay() {
                 </label>
               </div>
               <div class="split-row">
-                <button class="button button--ghost button--compact" data-action="prev-diff" type="button">${icon("chevronLeft")}上一处</button>
-                <button class="button button--ghost button--compact" data-action="next-diff" type="button">下一处${icon("chevronRight")}</button>
+                <button class="button button--ghost button--compact" data-action="prev-diff" type="button">${icon("chevronLeft")}Previous</button>
+                <button class="button button--ghost button--compact" data-action="next-diff" type="button">Next${icon("chevronRight")}</button>
               </div>
             </div>
 
             <div class="diff-grid">
               <div class="diff-column">
-                <h3>旧版</h3>
+                <h3>Old Version</h3>
                 <div class="diff-lines">
                   ${diffEntries
                     .map(
@@ -1931,7 +1931,7 @@ function renderVersionOverlay() {
                 </div>
               </div>
               <div class="diff-column">
-                <h3>新版</h3>
+                <h3>New Version</h3>
                 <div class="diff-lines">
                   ${diffEntries
                     .map(
@@ -1950,19 +1950,19 @@ function renderVersionOverlay() {
         </div>
 
         <div class="fullscreen-modal__footer">
-          <button class="button button--danger" data-action="request-restore-version" type="button">恢复至此版本</button>
-          <button class="button button--secondary" data-action="close-overlay" type="button">关闭</button>
+          <button class="button button--danger" data-action="request-restore-version" type="button">Restore to This Version</button>
+          <button class="button button--secondary" data-action="close-overlay" type="button">Close</button>
         </div>
 
         ${state.restoreConfirm
           ? `
             <div class="confirm-sheet">
               <div class="confirm-sheet__card">
-                <h3>确认恢复历史版本？</h3>
-                <p>恢复后将返回主编辑器，并以当前选中的历史版本内容替换现有正文。</p>
+                <h3>Confirm Restore History Version?</h3>
+                <p>After restore, return to main editor and replace current content with selected version.</p>
                 <div class="confirm-sheet__actions">
-                  <button class="button button--secondary" data-action="cancel-restore" type="button">取消</button>
-                  <button class="button button--danger" data-action="confirm-restore" type="button">确认恢复</button>
+                  <button class="button button--secondary" data-action="cancel-restore" type="button">Cancel</button>
+                  <button class="button button--danger" data-action="confirm-restore" type="button">Confirm Restore</button>
                 </div>
               </div>
             </div>
@@ -2051,9 +2051,9 @@ function persistTitleDraft() {
     render();
     return;
   }
-  updateCurrentDoc({ title: nextTitle, modified: "刚刚" });
+  updateCurrentDoc({ title: nextTitle, modified: "Just now" });
   state.titleEditing = false;
-  showToast("文档标题已更新。", "success");
+  showToast("Document title updated.", "success");
   render();
 }
 
@@ -2098,11 +2098,11 @@ function handleClick(event) {
       ensureDraftDocument();
       state.currentDocId = "doc-new";
       updateCurrentDoc({
-        title: state.quickPaste.trim() ? "导入文稿草稿" : "未命名文稿",
+        title: state.quickPaste.trim() ? "Imported Draft" : "Untitled Document",
         discipline: state.selectedDiscipline,
-        modified: "刚刚",
+        modified: "Just now",
         suggestions: 3,
-        path: ["我的文档", "新建文稿", "草稿"]
+        path: ["My Documents", "New Document", "Draft"]
       });
       state.titleDraft = currentDocTitle();
       selectParagraph("p-1");
@@ -2111,7 +2111,7 @@ function handleClick(event) {
       state.leftCollapsed = false;
       state.rightCollapsed = false;
       setRoute("editor");
-      showToast(state.quickPaste.trim() ? "已导入文本并进入编辑器。" : "已创建空白草稿。", "success");
+      showToast(state.quickPaste.trim() ? "Text imported and entered editor." : "Blank draft created.", "success");
       return;
     case "open-doc":
       openDocument(actionElement.dataset.docId);
@@ -2143,7 +2143,7 @@ function handleClick(event) {
         suggestion.id === actionElement.dataset.suggestionId ? { ...suggestion, status: "accepted" } : suggestion
       );
       state.selectedSuggestionId = firstSuggestionForParagraph(state.selectedParagraphId)?.id || null;
-      showToast("建议已接受，并记录进版本历史。", "success");
+      showToast("Suggestion accepted and recorded in version history.", "success");
       render();
       return;
     case "reject-suggestion":
@@ -2151,12 +2151,12 @@ function handleClick(event) {
         suggestion.id === actionElement.dataset.suggestionId ? { ...suggestion, status: "rejected" } : suggestion
       );
       state.selectedSuggestionId = firstSuggestionForParagraph(state.selectedParagraphId)?.id || null;
-      showToast("建议已拒绝。", "warning");
+      showToast("Suggestion rejected.", "warning");
       render();
       return;
     case "modify-suggestion":
       state.selectedSuggestionId = actionElement.dataset.suggestionId;
-      showToast("已定位到对应段落，请在正文中手动修改。", "success");
+      showToast("Positioned to paragraph, please manually edit in text.", "success");
       render();
       return;
     case "reject-all":
@@ -2166,7 +2166,7 @@ function handleClick(event) {
           : suggestion
       );
       state.selectedSuggestionId = null;
-      showToast("当前段落的待处理建议已全部拒绝。", "warning");
+      showToast("All pending suggestions for current paragraph rejected.", "warning");
       render();
       return;
     case "show-misunderstanding":
@@ -2181,7 +2181,7 @@ function handleClick(event) {
           : suggestion
       );
       state.panelMode = "normal";
-      showToast("本段所有建议已标记为已拒绝。", "warning");
+      showToast("All suggestions for this paragraph marked as rejected.", "warning");
       render();
       return;
     case "simulate-offline":
@@ -2196,7 +2196,7 @@ function handleClick(event) {
         state.rightCollapsed = false;
         render();
       } else {
-        showToast("当前段落分析完成，未发现新的高风险异常。", "success");
+        showToast("Current paragraph analysis complete, no new high-risk issues found.", "success");
       }
       return;
     case "open-versions":
@@ -2238,10 +2238,10 @@ function handleClick(event) {
     case "confirm-restore":
       state.restoreConfirm = false;
       state.overlay = null;
-      updateCurrentDoc({ modified: "刚刚" });
+      updateCurrentDoc({ modified: "Just now" });
       state.serviceStatus = "online";
       state.panelMode = "normal";
-      showToast("已恢复到所选历史版本。", "success");
+      showToast("Restored to selected version.", "success");
       render();
       return;
     case "start-title-edit":
@@ -2249,7 +2249,7 @@ function handleClick(event) {
       render();
       return;
     case "export-doc":
-      showToast("导出任务已加入队列。", "success");
+      showToast("Export task queued.", "success");
       return;
     case "toggle-user-menu":
       state.userMenuOpen = !state.userMenuOpen;
@@ -2275,7 +2275,7 @@ function handleClick(event) {
       render();
       return;
     case "rescan-citations":
-      showToast("AI 正在重新扫描全文引用，请稍候。", "success");
+      showToast("AI re-scanning citations, please wait.", "success");
       return;
     case "open-onboarding":
       state.onboardingStep = 1;
@@ -2285,7 +2285,7 @@ function handleClick(event) {
       state.overlay = null;
       state.userMenuOpen = false;
       setRoute("auth");
-      showToast("你已退出当前会话。", "warning");
+      showToast("You have logged out.", "warning");
       return;
     case "onboarding-next":
       state.onboardingStep = Math.min(4, state.onboardingStep + 1);
@@ -2302,7 +2302,7 @@ function handleClick(event) {
     case "enter-home":
       state.hasCompletedOnboarding = true;
       setRoute("home");
-      showToast("初始化已完成，进入主页。", "success");
+      showToast("Initialization complete, entering home.", "success");
       return;
     case "select-discipline":
       state.selectedDiscipline = actionElement.dataset.value;
@@ -2340,7 +2340,7 @@ function handleSubmit(event) {
       return;
     case "context":
       if (!state.contextDraft.trim()) {
-        showToast("请先补充必要语境。", "warning");
+        showToast("Please add necessary context first.", "warning");
         return;
       }
       state.suggestions = state.suggestions.map((suggestion) => {
@@ -2348,14 +2348,14 @@ function handleSubmit(event) {
           return {
             ...suggestion,
             confidence: "high",
-            note: `已结合补充语境重新分析：${state.contextDraft.trim()}`
+            note: `Re-analyzed with added context: ${state.contextDraft.trim()}`
           };
         }
         return suggestion;
       });
       state.contextDraft = "";
       state.panelMode = "normal";
-      showToast("已根据补充语境刷新建议。", "success");
+      showToast("Suggestions refreshed based on added context.", "success");
       render();
       return;
     case "rename-title":
@@ -2418,12 +2418,12 @@ function render() {
   document.body.classList.toggle("is-modal-open", Boolean(state.overlay));
   document.title =
     state.page === "editor"
-      ? "ScholarMind · 主编辑器"
+      ? "ScholarMind - Editor"
       : state.page === "home"
-        ? "ScholarMind · 主页"
+        ? "ScholarMind - Home"
         : state.page === "onboarding"
           ? "ScholarMind · Onboarding"
-          : "ScholarMind · 登录 / 注册";
+          : "ScholarMind - Login";
 
   app.innerHTML = `${renderPage()}${renderOverlay()}${renderToast()}`;
 

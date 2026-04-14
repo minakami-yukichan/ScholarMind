@@ -1266,6 +1266,13 @@ img.avatar {
   text-align: left;
   cursor: pointer;
   transition: border-color 160ms, background 160ms;
+  overflow: hidden;
+}
+
+.citation-card__author {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .citation-card.is-selected {
@@ -1587,18 +1594,18 @@ img.avatar {
 
 .editor-shell {
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr) 300px;
+  grid-template-columns: 320px minmax(0, 1fr) 320px;
   gap: 18px;
   padding: 18px 24px 24px;
   flex: 1;
 }
 
 .editor-shell.is-left-collapsed {
-  grid-template-columns: 52px minmax(0, 1fr) 300px;
+  grid-template-columns: 52px minmax(0, 1fr) 320px;
 }
 
 .editor-shell.is-right-collapsed {
-  grid-template-columns: 200px minmax(0, 1fr) 52px;
+  grid-template-columns: 320px minmax(0, 1fr) 52px;
 }
 
 .editor-shell.is-left-collapsed.is-right-collapsed {
@@ -1638,6 +1645,11 @@ img.avatar {
   padding: 16px 18px 18px;
   display: grid;
   gap: 18px;
+  overflow: hidden;
+}
+
+.editor-pane__body > * {
+  overflow: hidden;
 }
 
 .collapsed-rail {
@@ -1679,10 +1691,14 @@ img.avatar {
   text-align: left;
   background: rgba(20, 13, 29, 0.04);
   border: 1px solid transparent;
+  overflow: hidden;
 }
 
 .section-button strong {
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .section-button span {
@@ -1877,8 +1893,16 @@ img.avatar {
 .suggestion-card__meta,
 .suggestion-card__actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
+.suggestion-card__actions .button--tiny {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+  font-size: 12px;
+  min-height: 28px;
 }
 
 .suggestion-card__body {
