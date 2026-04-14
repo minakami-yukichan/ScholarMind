@@ -177,6 +177,13 @@ const stages = [
   "Final Review"
 ];
 
+const stageDescriptions = {
+  "Drafting":      "Ideas first. ScholarMind will offer open-ended prompts and generous structural guidance to help you develop arguments freely.",
+  "Structure":     "Organise before you refine. ScholarMind will focus on logical flow, section balance, and the sequencing of your core claims.",
+  "Polishing":     "Language in focus. ScholarMind will suggest expression improvements, clarity edits, and fluency adjustments across your draft.",
+  "Final Review":  "Almost there. ScholarMind will apply only conservative, clearly explained suggestions — minimising changes to preserve your voice.",
+};
+
 const capabilityCan = [
   "Suggest paragraph structures",
   "Identify logic gaps",
@@ -880,7 +887,7 @@ function renderOnboardingContent() {
               (item) => `
                 <button class="option-card ${state.selectedDiscipline === item ? "is-selected" : ""}" data-action="select-discipline" data-value="${item}" type="button">
                   <strong>${item}</strong>
-                  <span>Use common structure and expression constraints of \$\{item\} papers as default context.</span>
+                  <span>Use common structure and expression constraints of ${item} papers as default context.</span>
                 </button>
               `
             )
@@ -903,7 +910,7 @@ function renderOnboardingContent() {
               (item) => `
                 <button class="option-card ${state.selectedStage === item ? "is-selected" : ""}" data-action="select-stage" data-value="${item}" type="button">
                   <strong>${item}</strong>
-                  <span>Let ScholarMind use corresponding strategies for structure, wording, and suggestion confidence.</span>
+                  <span>${stageDescriptions[item]}</span>
                 </button>
               `
             )
