@@ -635,7 +635,8 @@ const state = {
   userMenuOpen: false,
   toast: null,
   modifyPrompt: "",
-  editedParagraphs: {}
+  editedParagraphs: {},
+  activeSectionId: null
 };
 
 const timers = {
@@ -1681,7 +1682,6 @@ function renderCitationsPane() {
 
 function renderEditorPage() {
   const doc = currentDoc();
-  const currentSection = findSectionByParagraph(state.selectedParagraphId) || editorSections[0];
   const pendingCount = suggestionStats().pending;
 
   return `
@@ -1773,11 +1773,17 @@ function renderEditorPage() {
                       <span class="eyebrow">AI-generated section summaries</span>
                       <button class="button button--ghost button--tiny" data-action="refresh-summaries" type="button">${icon("refresh")}Refresh</button>
                     </div>
+                    ${state.activeSectionId ? `
+                      <div class="section-filter-bar">
+                        <span class="section-filter-bar__label">Showing filtered section</span>
+                        <button class="button button--ghost button--tiny" data-action="clear-section-filter" type="button">${icon("close")}Show All</button>
+                      </div>
+                    ` : ""}
                     <div class="section-list">
                       ${editorSections
                         .map(
                           (section) => `
-                            <button class="section-button ${currentSection.id === section.id ? "is-active" : ""}" data-action="select-section" data-section-id="${section.id}" type="button">
+                            <button class="section-button ${state.activeSectionId === section.id ? "is-active" : ""}" data-action="select-section" data-section-id="${section.id}" type="button">
                               <strong>${section.anchor}</strong>
                               <span>${section.paragraphs.length} paragraphs</span>
                               <span class="section-summary">${section.summary || ""}</span>
@@ -1807,6 +1813,7 @@ function renderEditorPage() {
 
           <div class="editor-document">
             ${editorSections
+              .filter((section) => !state.activeSectionId || section.id === state.activeSectionId)
               .map(
                 (section) => `
                   <section class="editor-section">
@@ -2249,14 +2256,20 @@ function handleClick(event) {
       render();
       return;
     case "select-section": {
-      const section = editorSections.find((item) => item.id === actionElement.dataset.sectionId);
+      const sectionId = actionElement.dataset.sectionId;
+      const section = editorSections.find((item) => item.id === sectionId);
       if (section) {
+        state.activeSectionId = state.activeSectionId === sectionId ? null : sectionId;
         selectParagraph(section.paragraphs[0].id);
         state.panelMode = "normal";
         render();
       }
       return;
     }
+    case "clear-section-filter":
+      state.activeSectionId = null;
+      render();
+      return;
     case "focus-paragraph":
       if (state.selectedParagraphId !== actionElement.dataset.paragraphId) {
         selectParagraph(actionElement.dataset.paragraphId);

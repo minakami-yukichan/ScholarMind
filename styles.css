@@ -1732,6 +1732,24 @@ img.avatar {
   background: rgba(118, 74, 179, 0.08);
 }
 
+.section-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  background: rgba(118, 74, 179, 0.06);
+  border: 1px solid rgba(118, 74, 179, 0.15);
+  border-radius: 8px;
+}
+
+.section-filter-bar__label {
+  font-size: 11px;
+  color: var(--purple);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .logic-mini-tree__item {
   display: flex;
   align-items: center;
