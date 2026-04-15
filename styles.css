@@ -1300,6 +1300,7 @@ img.avatar {
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1706,6 +1707,26 @@ img.avatar {
   color: var(--text-faint);
 }
 
+.section-summary {
+  font-size: 11px;
+  color: var(--text-faint);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.section-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 4px;
+}
+
 .section-button.is-active {
   border-color: rgba(118, 74, 179, 0.2);
   background: rgba(118, 74, 179, 0.08);
@@ -1830,10 +1851,46 @@ img.avatar {
   background: rgba(118, 74, 179, 0.06);
 }
 
+.editor-paragraph__header {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.editor-paragraph__header small {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-faint);
+}
+
+.editor-paragraph__header:hover small {
+  color: var(--plum-600);
+}
+
 .editor-paragraph small {
   font-size: 12px;
   font-weight: 700;
   color: var(--text-faint);
+}
+
+.editor-paragraph__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.88;
+  color: rgba(23, 16, 32, 0.92);
+  outline: none;
+  border-radius: 8px;
+  transition: box-shadow 0.15s ease;
+}
+
+.editor-paragraph__text:focus {
+  box-shadow: 0 0 0 2px rgba(118, 74, 179, 0.28);
+  padding: 4px 6px;
+  margin: -4px -6px;
 }
 
 .editor-paragraph p {
@@ -2080,6 +2137,44 @@ img.avatar {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.75);
   box-shadow: var(--shadow-lg);
+}
+
+.overlay__card--modify {
+  width: min(560px, 100%);
+}
+
+.modify-original {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 18px;
+  background: rgba(20, 13, 29, 0.04);
+  border: 1px solid rgba(20, 13, 29, 0.07);
+}
+
+.modify-original__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modify-original__label .eyebrow {
+  margin-left: auto;
+}
+
+.modify-original__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+
+.modify-original__note {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
 }
 
 .overlay__card h2 {

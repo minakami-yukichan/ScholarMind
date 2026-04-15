@@ -345,6 +345,7 @@ const editorSections = [
     id: "sec-1",
     name: "Background",
     anchor: "1. Background",
+    summary: "Introduces algorithmic transparency in academic writing and identifies the gap in existing research.",
     paragraphs: [
       {
         id: "p-1",
@@ -362,6 +363,7 @@ const editorSections = [
     id: "sec-2",
     name: "Theoretical Framework",
     anchor: "2. Theoretical Framework",
+    summary: "Defines algorithmic transparency as the author's perceived awareness and proposes three analysis dimensions.",
     paragraphs: [
       {
         id: "p-3",
@@ -379,6 +381,7 @@ const editorSections = [
     id: "sec-3",
     name: "Methods & Discussion",
     anchor: "3. Methods & Discussion",
+    summary: "Describes semi-structured interview methodology and presents preliminary findings on suggestion acceptance.",
     paragraphs: [
       {
         id: "p-5",
@@ -448,6 +451,42 @@ const baseSuggestions = [
     text: "The last sentence can be split into two for better reading flow in the conclusion.",
     note: "",
     status: "rejected"
+  },
+  {
+    id: "s-7",
+    paragraphId: "p-2",
+    confidence: "high",
+    type: "Wording",
+    text: "Replace 'theoretical leap' with 'explanatory gap' for greater academic precision and to avoid a metaphorical register.",
+    note: "",
+    status: "pending"
+  },
+  {
+    id: "s-8",
+    paragraphId: "p-2",
+    confidence: "questionable",
+    type: "Structure",
+    text: "Consider leading this paragraph with the identified research gap rather than opening with a critique of existing studies — it may strengthen the introduction's argument chain.",
+    note: "This restructuring suggestion is based on general introduction conventions and may not apply to all disciplinary styles.",
+    status: "pending"
+  },
+  {
+    id: "s-9",
+    paragraphId: "p-1",
+    confidence: "questionable",
+    type: "Logic",
+    text: "The motivation for focusing specifically on 'academic writers' is not established — one sentence explaining why this group is particularly relevant to transparency discussions would strengthen the opening.",
+    note: "This gap was inferred from context. If the rationale is addressed later, this suggestion can be ignored.",
+    status: "pending"
+  },
+  {
+    id: "s-10",
+    paragraphId: "p-1",
+    confidence: "high",
+    type: "Wording",
+    text: "The phrase 'remains underexplored' is common — consider a more specific framing such as 'has received limited empirical attention' to signal the paper's empirical contribution.",
+    note: "",
+    status: "pending"
   }
 ];
 
@@ -594,7 +633,9 @@ const state = {
   titleEditing: false,
   titleDraft: baseDocuments[0].title,
   userMenuOpen: false,
-  toast: null
+  toast: null,
+  modifyPrompt: "",
+  editedParagraphs: {}
 };
 
 const timers = {
@@ -1421,11 +1462,17 @@ function renderMiniLogicTree() {
 
 function renderParagraphCard(paragraph) {
   const related = suggestionsForParagraph(paragraph.id).filter((suggestion) => suggestion.status === "pending");
+  const isSelected = state.selectedParagraphId === paragraph.id;
+  const displayText = state.editedParagraphs[paragraph.id] !== undefined
+    ? escapeHtml(state.editedParagraphs[paragraph.id])
+    : escapeHtml(paragraph.text);
   return `
-    <button class="editor-paragraph ${state.selectedParagraphId === paragraph.id ? "is-selected" : ""}" data-action="select-paragraph" data-paragraph-id="${paragraph.id}" data-severity="${paragraphSeverity(paragraph.id)}" type="button">
-      <small>${paragraph.label}${related.length ? ` - ${related.length} pending suggestions` : ""}</small>
-      <p>${paragraph.text}</p>
-    </button>
+    <div class="editor-paragraph ${isSelected ? "is-selected" : ""}" data-severity="${paragraphSeverity(paragraph.id)}">
+      <button class="editor-paragraph__header" data-action="select-paragraph" data-paragraph-id="${paragraph.id}" type="button">
+        <small>${paragraph.label}${related.length ? ` · ${related.length} pending` : ""}</small>
+      </button>
+      <p class="editor-paragraph__text" contenteditable="true" data-editable-id="${paragraph.id}" data-action="focus-paragraph" data-paragraph-id="${paragraph.id}" spellcheck="false">${displayText}</p>
+    </div>
   `;
 }
 
@@ -1598,7 +1645,7 @@ function renderCitationsPane() {
   return `
     <div class="editor-pane__body">
       <div class="citations-header">
-        <span class="eyebrow">Citations</span>
+        <span class="eyebrow">Citations Management</span>
         <span class="pill">Identified ${baseCitations.length} citations</span>
       </div>
       <p class="citations-hint">AI scanned the full text. Citations below need verification, click links to confirm sources.</p>
@@ -1606,7 +1653,7 @@ function renderCitationsPane() {
         ${baseCitations
           .map(
             (cit) => `
-              <button class="citation-card ${state.selectedCitationId === cit.id ? "is-selected" : ""}" data-action="select-citation" data-citation-id="${cit.id}" type="button">
+              <div class="citation-card ${state.selectedCitationId === cit.id ? "is-selected" : ""}" data-action="select-citation" data-citation-id="${cit.id}" role="button" tabindex="0">
                 <div class="citation-card__meta">
                   <span class="pill ${confidenceClass(cit.confidence)}">${confidenceLabel(cit.confidence)}</span>
                   ${cit.status === "searching"
@@ -1618,11 +1665,11 @@ function renderCitationsPane() {
                 ${cit.links.length
                   ? `
                     <div class="citation-links">
-                      ${cit.links.map((link) => `<a class="citation-link" href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`).join("")}
+                      ${cit.links.map((link) => `<button class="citation-link" data-action="open-citation-link" data-label="${escapeHtml(link.label)}" type="button">${link.label}</button>`).join("")}
                     </div>
                   `
                   : ""}
-              </button>
+              </div>
             `
           )
           .join("")}
@@ -1666,6 +1713,7 @@ function renderEditorPage() {
 
         <div class="editor-actions">
           <button class="button button--ghost button--compact" data-action="go-home" type="button">${icon("home")}Home</button>
+          <button class="button button--primary button--compact" data-action="save-doc" type="button">${icon("check")}Save</button>
           <button class="button button--secondary button--compact" data-action="open-versions" type="button">${icon("compare")}Version History</button>
           <button class="button button--secondary button--compact" data-action="export-doc" type="button">${icon("export")}Export</button>
           ${renderUserMenu()}
@@ -1713,7 +1761,7 @@ function renderEditorPage() {
               <div class="editor-pane__header">
                 <div class="editor-left-tabs">
                   <button class="${state.editorLeftTab === "navigation" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="navigation" class="${state.editorLeftTab === "navigation" ? "is-active" : ""}" type="button">Section Navigation</button>
-                  <button class="${state.editorLeftTab === "citations" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="citations" class="${state.editorLeftTab === "citations" ? "is-active" : ""}" type="button">Citations</button>
+                  <button class="${state.editorLeftTab === "citations" ? "is-active" : ""}" data-action="editor-left-tab" data-tab="citations" class="${state.editorLeftTab === "citations" ? "is-active" : ""}" type="button">Citations Management</button>
                 </div>
                 <button class="button button--ghost button--tiny" data-action="toggle-left" type="button">${icon("chevronLeft")}Collapse</button>
               </div>
@@ -1721,6 +1769,10 @@ function renderEditorPage() {
                 ? renderCitationsPane()
                 : `
                   <div class="editor-pane__body">
+                    <div class="section-nav-header">
+                      <span class="eyebrow">AI-generated section summaries</span>
+                      <button class="button button--ghost button--tiny" data-action="refresh-summaries" type="button">${icon("refresh")}Refresh</button>
+                    </div>
                     <div class="section-list">
                       ${editorSections
                         .map(
@@ -1728,19 +1780,13 @@ function renderEditorPage() {
                             <button class="section-button ${currentSection.id === section.id ? "is-active" : ""}" data-action="select-section" data-section-id="${section.id}" type="button">
                               <strong>${section.anchor}</strong>
                               <span>${section.paragraphs.length} paragraphs</span>
+                              <span class="section-summary">${section.summary || ""}</span>
                             </button>
                           `
                         )
                         .join("")}
                     </div>
-                    <div>
-                      <div class="split-row">
-                        <h3>Current Section Logic Tree</h3>
-                        <span class="pill pill--warning">Weak paragraph</span>
-                      </div>
-                      ${renderMiniLogicTree()}
-                    </div>
-                    <button class="button button--secondary button--block" data-action="open-structure" type="button">${icon("branch")}View Structure</button>
+                    <button class="button button--secondary button--block" data-action="open-structure" type="button">${icon("branch")}Open Logic Analysis</button>
                   </div>
                 `}
             `}
@@ -1789,6 +1835,53 @@ function renderEditorPage() {
         ${renderSuggestionsPane()}
       </div>
     </section>
+  `;
+}
+
+function renderModifyOverlay() {
+  const suggestion = state.suggestions.find((s) => s.id === state.selectedSuggestionId);
+  if (!suggestion) return "";
+  const confidenceClass = suggestion.confidence === "questionable" ? "pill--warning" : "pill--blue";
+  const confidenceLabel = suggestion.confidence === "questionable" ? "Questionable" : "High";
+
+  return `
+    <div class="overlay" data-backdrop="true">
+      <div class="overlay__card overlay__card--modify">
+        <div class="overlay__header">
+          <div>
+            <h2>Customize This Suggestion</h2>
+            <p>Describe how you'd like AI to adjust this suggestion for your specific needs.</p>
+          </div>
+          <button class="overlay__close" data-action="close-overlay" type="button">${icon("close")}</button>
+        </div>
+
+        <div class="modify-original">
+          <div class="modify-original__label">
+            <span class="pill ${confidenceClass}">${confidenceLabel}</span>
+            <span class="tag">${suggestion.type}</span>
+            <span class="eyebrow">Current suggestion</span>
+          </div>
+          <p class="modify-original__text">${escapeHtml(suggestion.text)}</p>
+          ${suggestion.note ? `<small class="modify-original__note">${escapeHtml(suggestion.note)}</small>` : ""}
+        </div>
+
+        <form class="form-stack" data-form="modify-prompt">
+          <label class="field field--textarea">
+            <span class="field__label">Your instruction to AI</span>
+            <textarea
+              data-model="modify-prompt"
+              name="prompt"
+              placeholder="e.g., Make it more concise / Use passive voice / Focus on methodology / Adapt for a humanities audience"
+              rows="4"
+            >${escapeHtml(state.modifyPrompt)}</textarea>
+          </label>
+          <div class="step-actions">
+            <button class="button button--secondary" data-action="close-overlay" type="button">Cancel</button>
+            <button class="button button--primary" type="submit">${icon("spark")}Generate Customized Suggestion</button>
+          </div>
+        </form>
+      </div>
+    </div>
   `;
 }
 
@@ -2002,6 +2095,9 @@ function renderVersionOverlay() {
 }
 
 function renderOverlay() {
+  if (state.overlay === "modify-suggestion") {
+    return renderModifyOverlay();
+  }
   if (state.overlay === "limitations") {
     return renderLimitationsOverlay();
   }
@@ -2129,11 +2225,11 @@ function handleClick(event) {
         title: state.quickPaste.trim() ? "Imported Draft" : "Untitled Document",
         discipline: state.selectedDiscipline,
         modified: "Just now",
-        suggestions: 3,
+        suggestions: 6,
         path: ["My Documents", "New Document", "Draft"]
       });
       state.titleDraft = currentDocTitle();
-      selectParagraph("p-1");
+      selectParagraph("p-2");
       state.serviceStatus = "online";
       state.panelMode = "normal";
       state.leftCollapsed = false;
@@ -2161,6 +2257,13 @@ function handleClick(event) {
       }
       return;
     }
+    case "focus-paragraph":
+      if (state.selectedParagraphId !== actionElement.dataset.paragraphId) {
+        selectParagraph(actionElement.dataset.paragraphId);
+        state.panelMode = "normal";
+        render();
+      }
+      return;
     case "select-paragraph":
       selectParagraph(actionElement.dataset.paragraphId);
       state.panelMode = "normal";
@@ -2184,8 +2287,8 @@ function handleClick(event) {
       return;
     case "modify-suggestion":
       state.selectedSuggestionId = actionElement.dataset.suggestionId;
-      showToast("Positioned to paragraph, please manually edit in text.", "success");
-      render();
+      state.modifyPrompt = "";
+      openOverlay("modify-suggestion");
       return;
     case "reject-all":
       state.suggestions = state.suggestions.map((suggestion) =>
@@ -2276,6 +2379,11 @@ function handleClick(event) {
       state.titleEditing = true;
       render();
       return;
+    case "save-doc":
+      updateCurrentDoc({ modified: formattedTime() });
+      showToast("Document saved.", "success");
+      render();
+      return;
     case "export-doc":
       showToast("Export task queued.", "success");
       return;
@@ -2302,9 +2410,17 @@ function handleClick(event) {
       state.selectedCitationId = actionElement.dataset.citationId;
       render();
       return;
+    case "refresh-summaries":
+      showToast("AI re-analyzing section summaries…", "success");
+      return;
     case "rescan-citations":
       showToast("AI re-scanning citations, please wait.", "success");
       return;
+    case "open-citation-link": {
+      const label = actionElement.dataset.label || "External source";
+      showToast(`Opening "${label}" — external link (prototype simulation).`, "success");
+      return;
+    }
     case "open-onboarding":
       state.onboardingStep = 1;
       setRoute("onboarding");
@@ -2403,6 +2519,26 @@ function handleSubmit(event) {
     case "rename-title":
       persistTitleDraft();
       return;
+    case "modify-prompt": {
+      if (!state.modifyPrompt.trim()) {
+        showToast("Please enter an instruction for AI first.", "warning");
+        return;
+      }
+      const targetId = state.selectedSuggestionId;
+      const userPrompt = state.modifyPrompt.trim();
+      const original = state.suggestions.find((s) => s.id === targetId);
+      if (original) {
+        const regenerated = `[Customized per instruction: "${userPrompt}"] ${original.text.replace(/^Consider |^Change |^Replace |^Moving /, "").charAt(0).toUpperCase() + original.text.replace(/^Consider |^Change |^Replace |^Moving /, "").slice(1)}`;
+        state.suggestions = state.suggestions.map((s) =>
+          s.id === targetId ? { ...s, text: regenerated, note: `Customized by user instruction: "${userPrompt}"` } : s
+        );
+      }
+      state.modifyPrompt = "";
+      state.overlay = null;
+      showToast("AI regenerated suggestion based on your input.", "success");
+      render();
+      return;
+    }
     default:
       return;
   }
@@ -2429,6 +2565,9 @@ function handleInput(event) {
       return;
     case "context-draft":
       state.contextDraft = event.target.value;
+      return;
+    case "modify-prompt":
+      state.modifyPrompt = event.target.value;
       return;
     case "quick-paste":
       state.quickPaste = event.target.value;
@@ -2483,5 +2622,13 @@ document.addEventListener("click", handleClick);
 document.addEventListener("submit", handleSubmit);
 document.addEventListener("input", handleInput);
 document.addEventListener("change", handleChange);
+document.addEventListener("focusout", function handleFocusOut(event) {
+  const editableId = event.target.dataset.editableId;
+  if (!editableId) return;
+  const newText = event.target.innerText.trim();
+  if (newText !== (state.editedParagraphs[editableId] ?? "")) {
+    state.editedParagraphs[editableId] = newText;
+  }
+});
 
 render();
