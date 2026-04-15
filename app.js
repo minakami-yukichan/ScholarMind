@@ -866,6 +866,15 @@ function renderAuthPage() {
                 ${icon("user")}Enter with Institutional SSO
               </button>
             </div>
+            <div class="auth-sso">
+              <div class="auth-divider">Prototype demo</div>
+              <button class="button button--ghost button--block" data-action="demo-fault-p7" type="button">
+                ${icon("warning")}Demo: AI Misunderstanding (P7)
+              </button>
+              <button class="button button--ghost button--block" data-action="demo-fault-p8" type="button">
+                ${icon("refresh")}Demo: Service Outage (P8)
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -1480,10 +1489,13 @@ function renderSuggestionsPane() {
           </div>
           <div class="suggestion-scroll">
             <div class="panel-state panel-state--offline">
-              <h4>Currently offline, AI suggestions paused</h4>
-              <p>Cached suggestions from last session for reference. Editor content can still be modified, drafts auto-saved locally.</p>
+              <h4>Offline Mode — AI Suggestions Paused</h4>
+              <p>Currently offline. Editor content is unaffected — you can continue writing. Cached suggestions from the last session are shown below for reference only.</p>
             </div>
-            <div class="suggestion-list">${related.length ? related.map(renderSuggestionCard).join("") : `<div class="panel-empty"><p>No cached suggestions for current paragraph.</p></div>`}</div>
+            ${related.length
+              ? `<p class="suggestion-cache-label">${icon("history")}Last connected suggestions · for reference only</p>
+                 <div class="suggestion-list">${related.map(renderSuggestionCard).join("")}</div>`
+              : `<div class="panel-empty"><p>No cached suggestions for current paragraph.</p></div>`}
           </div>
           <div class="suggestion-footer">
             <button class="button button--primary button--block" data-action="retry-connection" type="button">${icon("refresh")}${state.serviceStatus === "recovering" ? "Reconnecting..." : "Retry Connection"}</button>
@@ -1505,16 +1517,25 @@ function renderSuggestionsPane() {
           </div>
           <div class="suggestion-scroll">
             <div class="panel-state panel-state--warning">
-              <h4>${icon("warning")}AI May Have Misunderstood This Paragraph</h4>
-              <p>AI suggestions for this paragraph have low confidence due to possibly unrecognized domain terminology. You can add context and re-analyze, or ignore all suggestions.</p>
-              <form class="form-stack" data-form="context">
-                <label class="field field--textarea">
-                  <textarea data-model="context-draft" name="context" placeholder="e.g., This paragraph describes qualitative research methods, focusing on method boundaries rather than causal mechanisms.">${escapeHtml(state.contextDraft)}</textarea>
-                </label>
-                <button class="button button--primary button--block" type="submit">Add Context & Re-analyze</button>
-              </form>
-              <button class="button button--secondary button--block" data-action="ignore-current-paragraph" type="button">Ignore All Suggestions</button>
-              <p class="muted">If problem persists, adjust discipline preferences in settings.</p>
+              <div class="panel-state__icon-row">
+                ${icon("warning")}
+                <h4>AI May Have Misunderstood This Paragraph</h4>
+              </div>
+              <p>Suggestion confidence for this paragraph is low — the AI may not have correctly recognised certain disciplinary terms or expressions. You can add context to trigger a re-analysis, or dismiss all suggestions.</p>
+              <div class="fault-path">
+                <span class="fault-path__label">Option 1 — Add context</span>
+                <form class="form-stack" data-form="context">
+                  <label class="field field--textarea">
+                    <textarea data-model="context-draft" name="context" placeholder="e.g., This paragraph describes qualitative research methods, focusing on method boundaries rather than causal mechanisms.">${escapeHtml(state.contextDraft)}</textarea>
+                  </label>
+                  <button class="button button--primary button--block" type="submit">Submit Context & Re-analyze</button>
+                </form>
+              </div>
+              <div class="fault-path">
+                <span class="fault-path__label">Option 2 — Dismiss</span>
+                <button class="button button--secondary button--block" data-action="ignore-current-paragraph" type="button">Ignore All Suggestions for This Paragraph</button>
+              </div>
+              <p class="muted">If this persists, adjust your discipline preferences in Settings.</p>
             </div>
           </div>
         </div>
@@ -1654,8 +1675,8 @@ function renderEditorPage() {
       ${state.serviceStatus === "offline"
         ? `
           <div class="editor-banner editor-banner--offline">
-            <strong>${icon("warning")}AI service temporarily unavailable, reconnecting...</strong>
-            <p>Draft auto-saved locally - ${state.localSaveTime || formattedTime()}</p>
+            <strong>${icon("warning")}AI service temporarily unavailable, reconnecting…</strong>
+            <span class="banner-save-confirm">${icon("check")}Draft auto-saved locally · ${state.localSaveTime || formattedTime()}</span>
             <button class="button button--secondary button--tiny" data-action="retry-connection" type="button">Retry Connection</button>
           </div>
         `
@@ -2287,6 +2308,20 @@ function handleClick(event) {
     case "open-onboarding":
       state.onboardingStep = 1;
       setRoute("onboarding");
+      return;
+    case "demo-fault-p7":
+      state.hasCompletedOnboarding = true;
+      openDocument("doc-1");
+      selectParagraph("p-5");
+      state.panelMode = "misunderstood";
+      state.contextDraft = "";
+      state.rightCollapsed = false;
+      render();
+      return;
+    case "demo-fault-p8":
+      state.hasCompletedOnboarding = true;
+      openDocument("doc-1");
+      triggerOfflineMode();
       return;
     case "logout":
       state.overlay = null;

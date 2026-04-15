@@ -1981,6 +1981,69 @@ img.avatar {
   background: rgba(20, 13, 29, 0.04);
 }
 
+.panel-state__icon-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.panel-state__icon-row .icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--amber);
+}
+
+.panel-state__icon-row h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #7a4b0e;
+}
+
+.fault-path {
+  display: grid;
+  gap: 10px;
+}
+
+.fault-path__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.suggestion-cache-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 0;
+  padding: 0 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-faint);
+}
+
+.suggestion-cache-label .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.banner-save-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+.banner-save-confirm .icon {
+  width: 15px;
+  height: 15px;
+  color: var(--green);
+}
+
 .panel-empty {
   display: grid;
   gap: 12px;
