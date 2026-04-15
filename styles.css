@@ -2417,26 +2417,46 @@ img.avatar {
 
 .version-item {
   display: grid;
-  gap: 8px;
-  padding: 16px;
-  border-radius: 20px;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 14px;
   text-align: left;
-  background: rgba(20, 13, 29, 0.04);
-  border: 1px solid transparent;
+  background: rgba(20, 13, 29, 0.05);
+  border: 1px solid rgba(20, 13, 29, 0.07);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.version-item:hover:not(.is-active) {
+  background: rgba(20, 13, 29, 0.09);
+  border-color: rgba(20, 13, 29, 0.13);
 }
 
 .version-item.is-active {
-  border-color: rgba(118, 74, 179, 0.22);
-  background: rgba(118, 74, 179, 0.08);
+  background: #7c3aed;
+  border-color: #6d28d9;
+  box-shadow: inset 3px 0 0 rgba(255,255,255,0.25);
+  padding-left: 13px;
+}
+
+.version-item.is-active strong {
+  color: #fff;
 }
 
 .version-item strong {
   font-size: 14px;
+  font-weight: 700;
 }
 
 .version-item span,
 .version-item small {
+  font-size: 12px;
   color: var(--text-soft);
+}
+
+.version-item.is-active span,
+.version-item.is-active small {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .version-diff {
@@ -2518,8 +2538,31 @@ img.avatar {
   opacity: 0.62;
 }
 
-.diff-line.is-focused {
-  outline: 2px solid rgba(118, 74, 179, 0.28);
+.diff-line[data-action="select-diff-line"] {
+  cursor: pointer;
+  transition: background 0.1s, box-shadow 0.1s;
+}
+
+.diff-line[data-action="select-diff-line"]:hover:not(.is-focused) {
+  box-shadow: 0 0 0 2px rgba(118, 74, 179, 0.2);
+}
+
+/* focused overrides all data-change backgrounds with a solid purple tint */
+.diff-line.is-focused,
+.diff-line.is-focused[data-change="removed"],
+.diff-line.is-focused[data-change="added"],
+.diff-line.is-focused[data-change="unchanged"] {
+  background: rgba(118, 74, 179, 0.18);
+  box-shadow: inset 3px 0 0 var(--purple);
+  opacity: 1;
+}
+
+.diff-line.is-focused small {
+  color: var(--purple);
+}
+
+.diff-line.is-focused p {
+  font-weight: 500;
 }
 
 .confirm-sheet {

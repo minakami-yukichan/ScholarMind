@@ -2049,7 +2049,7 @@ function renderVersionOverlay() {
                   ${diffEntries
                     .map(
                       (entry, index) => `
-                        <article class="diff-line ${state.versionJumpIndex === index ? "is-focused" : ""}" data-change="${entry.status === "added" ? "unchanged" : entry.status === "modified" ? "removed" : "unchanged"}">
+                        <article class="diff-line ${state.versionJumpIndex === index ? "is-focused" : ""}" data-change="${entry.status === "added" ? "unchanged" : entry.status === "modified" ? "removed" : "unchanged"}" data-action="select-diff-line" data-diff-index="${index}" role="button" tabindex="0">
                           <small>${entry.label}</small>
                           <p>${entry.old || "—"}</p>
                         </article>
@@ -2064,7 +2064,7 @@ function renderVersionOverlay() {
                   ${diffEntries
                     .map(
                       (entry, index) => `
-                        <article class="diff-line ${state.versionJumpIndex === index ? "is-focused" : ""}" data-change="${entry.status === "added" ? "added" : entry.status === "modified" ? "added" : "unchanged"}">
+                        <article class="diff-line ${state.versionJumpIndex === index ? "is-focused" : ""}" data-change="${entry.status === "added" ? "added" : entry.status === "modified" ? "added" : "unchanged"}" data-action="select-diff-line" data-diff-index="${index}" role="button" tabindex="0">
                           <small>${entry.label}</small>
                           <p>${entry.new || "—"}</p>
                         </article>
@@ -2363,6 +2363,23 @@ function handleClick(event) {
       }
       closeOverlay();
       return;
+    case "select-version-card": {
+      const vId = actionElement.dataset.versionId;
+      if (vId && vId !== state.versionB) {
+        state.versionB = vId;
+        state.versionJumpIndex = 0;
+        render();
+      }
+      return;
+    }
+    case "select-diff-line": {
+      const idx = parseInt(actionElement.dataset.diffIndex, 10);
+      if (!isNaN(idx)) {
+        state.versionJumpIndex = idx;
+        render();
+      }
+      return;
+    }
     case "prev-diff":
       state.versionJumpIndex = Math.max(0, state.versionJumpIndex - 1);
       render();
@@ -2398,7 +2415,7 @@ function handleClick(event) {
       render();
       return;
     case "export-doc":
-      showToast("Export task queued.", "success");
+      showToast("Export successful.", "success");
       return;
     case "toggle-user-menu":
       state.userMenuOpen = !state.userMenuOpen;
