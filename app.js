@@ -1056,7 +1056,7 @@ function renderOnboardingPage() {
           ${renderOnboardingContent()}
 
           <div class="step-actions">
-            <button class="button button--ghost" ${state.onboardingStep === 1 ? "disabled" : ""} data-action="onboarding-back" type="button">Back</button>
+            <button class="button button--ghost" data-action="onboarding-back" type="button">Back</button>
             ${state.onboardingStep < 3 ? `<button class="button button--primary" data-action="onboarding-next" type="button">Continue</button>` : ""}
             ${state.onboardingStep === 3 ? `<button class="button button--primary" data-action="onboarding-acknowledge" type="button">I understand, continue</button>` : ""}
             ${state.onboardingStep === 4 ? `<button class="button button--primary" data-action="enter-home" type="button">Enter ScholarMind</button>` : ""}
@@ -2480,8 +2480,12 @@ function handleClick(event) {
       render();
       return;
     case "onboarding-back":
-      state.onboardingStep = Math.max(1, state.onboardingStep - 1);
-      render();
+      if (state.onboardingStep === 1) {
+        setRoute("auth");
+      } else {
+        state.onboardingStep -= 1;
+        render();
+      }
       return;
     case "onboarding-acknowledge":
       state.onboardingStep = 4;
